@@ -1,0 +1,47 @@
+.nav-wrapper {
+    padding-left: 2%;
+}
+
+#logo-title {
+    font-family: "Courier New";
+    font-weight: 500;
+}
+
+#intro-text {
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+table {
+    margin-bottom: 3%;
+    border: black solid 2px;
+    font-size: 24px;
+}
+
+td {
+    border-left: gray solid 1px;
+    text-align: center;
+    padding: 0px; 
+    border-bottom: none;
+    border-top: none;
+    
+}
+
+td:hover {
+    background-color: #f5f5f5;
+}
+
+tr:nth-child(3n+0) {
+    border-bottom: black solid 2px;
+}
+
+td:nth-child(3n+0) {
+    border-right: black solid 2px;
+}
+
+button {
+    margin-bottom: 3%;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+

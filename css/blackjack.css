@@ -1,0 +1,28 @@
+.nav-wrapper {
+    padding-left: 2%;
+}
+
+#simulation-container {
+    margin-top: 2%;
+}
+
+#blackjack-text {
+    margin-top: 3%;
+}
+
+#parameters-container {
+    height: 100px;
+    padding: 10px;
+    box-shadow: 0.25px 1px 3px #a2a2a2;
+}
+
+#results-container {
+    height: 100px;
+    padding: 10px;
+    box-shadow: 0.25px 1px 3px #a2a2a2;
+}
+
+#logo-title {
+    font-family: "Courier New";
+    font-weight: 500;
+}
