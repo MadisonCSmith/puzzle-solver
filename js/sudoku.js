@@ -12,22 +12,26 @@
 var size = 9;
 
 ///////////
-/// data //
+/// get data //
 ///////////
 
+var test = document.getElementById('0');
+var form = document.getElementById('puzzle');
 
-
-// for (var i = 0; i < data.length; i++) { 
-//     var possibilities = new Set([1, 2, 3, 4, 5, 6, 7, 8, 9]);
-
-//     data[i] = [newSet];  
-// } 
+// 
+form.addEventListener('submit', function(event) {
+    if (test.value && (test.value > 9 || test.value < 1)) {  // tests that if there's a value, value is between 1 and 9, pop up w error message if not
+        alert("Please make sure all values are between 1 and 9.");
+    }
+    console.log(parseInt(test.value));
+    event.preventDefault(); // keeps page from refreshing and erasing data
+});
 
 
 ///////////
 ///////////
 
-function solve() {
+/*function solve() {
     readData();
 }
 
@@ -47,4 +51,4 @@ function validateForm() { // fix to be on screen and highlight problem boxes in 
       alert("Numbers must between 1 and 9.");
       return false;
     }
-}
+}*/
