@@ -4,51 +4,72 @@
 
 // are some sudoku games bigger than others- be able to resize game - 16*16 instead of 9*9
 // add reset button
+// go through all error messages and highlight in red where the error occurs in puzzle, don't just say there's an error
 
 ///////////
 ///////////
 
 
 var size = 9;
+var puzzle = new Array(81);
 
-///////////
-/// get data //
-///////////
+//////////////////////////
+/// gets data from form //
+//////////////////////////
 
-var test = document.getElementById('0');
+
 var form = document.getElementById('puzzle');
 
-// 
+// called when submitted
 form.addEventListener('submit', function(event) {
-    if (test.value && (test.value > 9 || test.value < 1)) {  // tests that if there's a value, value is between 1 and 9, pop up w error message if not
-        alert("Please make sure all values are between 1 and 9.");
+
+    // goes through all boxes in puzzle
+    for (var i = 0; i < 81; i++) {
+        var cell = document.getElementById(i.toString()); // gets box where id == i
+
+        // validates - tests that if there's a value and that the value is between 1 and 9, pop up w error message if not
+        if (cell.value && (cell.value > 9 || cell.value < 1)) { 
+            alert("Please enter values between 1 and 9.");
+        }
+
+        if (cell.value) {
+            puzzle[i] = parseInt(cell.value); // if value, adds value into array
+        } else {
+            puzzle[i] = new Set([1, 2, 3, 4, 5, 6, 7, 8, 9]); // if no value, adds set into array
+        }
     }
-    console.log(parseInt(test.value));
+    console.log("initial puzzle: " + puzzle);
     event.preventDefault(); // keeps page from refreshing and erasing data
+    solvePuzzle();
 });
 
 
-///////////
-///////////
+/////////////////////////
+/// solves puzzle ///////
+/////////////////////////
 
-/*function solve() {
-    readData();
-}
-
-function readData() {
-    data = new Array(size);
-
-    for (var i = 0; i < data.length; i++) { 
-        data[i] = new Array(size); 
-    } 
-    console.log(data);
-}
-
-
-function validateForm() { // fix to be on screen and highlight problem boxes in red
-    var x = document.forms["sudoku-grid"]["1-1"].value;
-    if (x != '' && (x < 1 || x > 9)) {
-      alert("Numbers must between 1 and 9.");
-      return false;
+function solvePuzzle() {
+    if (!ifSolvable) {
+        alert ("The puzzle is not solveable because there is a repeat of a number inside row, column or square.")
     }
-}*/
+
+    while (!isSolved) {
+        // Delete all possibilities that overlap with values in row, column, square
+        // Check if only one possibility left in a value in row, column, square
+    }
+}
+
+function ifSolved() {
+    // if there not an int in puzzle, then return false
+    for (var i = 0; i < puzzle.length; i++) {
+        if (!Number.isInteger(puzzle[i])) { 
+            return false;
+        }
+    }
+    return true;
+}
+
+function ifSolvable() {
+    // do something
+    return true;
+}
