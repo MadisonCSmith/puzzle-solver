@@ -2,11 +2,18 @@
 // to do //
 ///////////
 
-// are some sudoku games bigger than others- be able to resize game - 16*16 instead of 9*9
 // add reset button
-// go through all error messages and highlight in red where the error occurs in puzzle, don't just say there's an error
 // throw error if not enough info to solve puzzle (if stop making progress)
+
+
+/// UI ///
+// go through all error messages and highlight in red where the error occurs in puzzle, don't just say there's an error
 // make it so when click on box, it highlights everything already there so don't have to highlight/backspace manually
+// put everything in screen as they're found
+// differentiate by color/boldness things inputted and things found
+// stop things from being changed after submitted-- will mess everything up
+// add some animations and stuff to make it look better- fade appearing
+
 
 ///////////
 ///////////
@@ -67,6 +74,7 @@ function solvePuzzle() {
     }
     count = 100; // delete later and replace with "progressMade"
     while (unsolvedCellIndexes.size > 0 && count > 0) {
+
         // Delete all possibilities that overlap with values in row, column, square
         for (var i = 0; i < 9; i++) {
             deletePossibilities(getColumn(i));
@@ -74,11 +82,12 @@ function solvePuzzle() {
             deletePossibilities(getSquare(i));
         }
 
-        // for each unsolvedCellIndexes call function checkPossibilities (check if only one possibility left for cell and replace as solved)
-        //unsolvedCellIndexes.forEach(checkPossibilities); // --> called as going through cells
-
         count--; // delete later and replace with boolean "progressMade"
     }
+
+    // if unique possbility in column, row, square, convert to solved
+
+
     console.log("finished puzzle: " + puzzle);
 }
 
@@ -127,7 +136,7 @@ function getSquare(squIndex) {
     // gets indexes for the square with index squIndex
     for (var i = 0; i < 27; i = i + 9) {
         for (var j = 0; j < 3; j++) {
-            indexes.push(initialIndexes[squIndex] + i + j) ;
+            indexes.push(initialIndexes[squIndex] + i + j);
         }
     }
 
@@ -151,7 +160,7 @@ function deletePossibilities(currentStatus) {
         for (var j = 0; j < solvedValues.length; j++) { // loops through solved values
             
             // if solved value is in unsolved set, delete value
-            if (puzzle[unsolvedIndexes[i]].has(solvedValues[j])) {
+            if (puzzle[unsolvedIndexes[i]].size > 0 && puzzle[unsolvedIndexes[i]].has(solvedValues[j])) { 
                 puzzle[unsolvedIndexes[i]].delete(solvedValues[j]);
                 
                 // if set only has one thing in it, convert cell to solved 
@@ -168,4 +177,6 @@ function changeToSolved(cellIndex) {
     var value = puzzle[cellIndex].values().next().value;
     puzzle[cellIndex] = value;
     unsolvedCellIndexes.delete(cellIndex);
+    console.log(unsolvedCellIndexes);
+    document.getElementById(cellIndex.toString()).value = value; // puts solved value onto DOM
 }
