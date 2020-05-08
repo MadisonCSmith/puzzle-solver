@@ -115,12 +115,9 @@ function ifSolvable() {
 
 // gets unsolved indexes in a column given an index of the column
 function getColumn(colIndex) {
-    //var solvedValues = new Array();
     var unsolvedIndexes = new Array();
     for (var i = colIndex; i < 81; i = i + 9) { // gets all indexes in column given which column 
-        if (Number.isInteger(puzzle[i])) {
-            //solvedValues.push(puzzle[i]); // add puzzle[i] to array or something (solved values)
-        } else {
+        if (!Number.isInteger(puzzle[i])) {
             unsolvedIndexes.push(i); // add i to array or something (unsolved indexes)
         }
     }
@@ -132,9 +129,7 @@ function getRow(rowIndex) {
     //var solvedValues = new Array();
     var unsolvedIndexes = new Array();
     for (var i = rowIndex * 9; i < (rowIndex * 9) + 9; i++) { // gets all indexes in row given which row 
-        if (Number.isInteger(puzzle[i])) {
-            // solvedValues.push(puzzle[i]); // add puzzle[i] to array or something (solved values)
-        } else {
+        if (!Number.isInteger(puzzle[i])) {
             unsolvedIndexes.push(i); // add i to array or something (unsolved indexes)
         }
     }
@@ -157,9 +152,7 @@ function getSquare(squIndex) {
     }
 
     for (var i = 0; i < 9; i++) { // interates through indexes for indexes array 
-        if (Number.isInteger(puzzle[indexes[i]])) {
-            //solvedValues.push(puzzle[indexes[i]]); // add puzzle[i] to array solved values
-        } else {
+        if (!Number.isInteger(puzzle[indexes[i]])) {
             unsolvedIndexes.push(indexes[i]); // add i to array unsolved indexes
         }
     }
