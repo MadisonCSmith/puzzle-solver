@@ -154,29 +154,51 @@ function getSquare(squIndex) {
 function deletePossibilities(currentStatus) {
     var solvedValues = currentStatus[0];
     var unsolvedIndexes = currentStatus[1];
+    var counts = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0);
+    var countsIndexes = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    // if the sets at unsolvedIndexes contains solvedValues, delete value in set
     for (var i = 0; i < unsolvedIndexes.length; i++) { // loops through unsolved indexes
+
+        // increments counts for values in each unsolved set
+        if (!Number.isInteger(puzzle[unsolvedIndexes[i]]) && puzzle[unsolvedIndexes[i]].size > 0) {
+            var currentSet = puzzle[unsolvedIndexes[i]];
+            var currentIterator = currentSet.values();
+            for (var k = 0; k < currentSet.size; k++) {
+                var possibility = currentIterator.next().value;
+                counts[possibility - 1]++;
+                countsIndexes[possibility - 1] = unsolvedIndexes[i];
+            }
+        }
+
+        // if unique possibility (index in counts == 1), call changeToSolved(cellIndex, value)
+        for (var l = 0; l < 9; l++) {
+            if (counts[l] == 1) {
+                console.log(counts);
+                console.log(countsIndexes);
+                //changeToSolved(countsIndexes[l], l + 1);
+            }
+        }
+
+        // if the sets at unsolvedIndexes contains solvedValues, delete value in set
         for (var j = 0; j < solvedValues.length; j++) { // loops through solved values
             
             // if solved value is in unsolved set, delete value
-            if (puzzle[unsolvedIndexes[i]].size > 0 && puzzle[unsolvedIndexes[i]].has(solvedValues[j])) { 
+            if (puzzle[unsolvedIndexes[i]].size > 0 && puzzle[unsolvedIndexes[i]].has(solvedValues[j])) {
                 puzzle[unsolvedIndexes[i]].delete(solvedValues[j]);
                 
                 // if set only has one thing in it, convert cell to solved 
                 if (puzzle[unsolvedIndexes[i]].size == 1) {
-                    changeToSolved(unsolvedIndexes[i]);
+                    changeToSolved(unsolvedIndexes[i], puzzle[unsolvedIndexes[i]].values().next().value);
                 }
-            }  
+            }
         }
     }
 }
 
 // change cell from unsolved to solved -- replace set with value and removed from unsolved indices
-function changeToSolved(cellIndex) {
-    var value = puzzle[cellIndex].values().next().value;
+function changeToSolved(cellIndex, value) {
     puzzle[cellIndex] = value;
     unsolvedCellIndexes.delete(cellIndex);
-    console.log(unsolvedCellIndexes);
+    console.log("index: " + cellIndex + " --> " + value);
     document.getElementById(cellIndex.toString()).value = value; // puts solved value onto DOM
 }
