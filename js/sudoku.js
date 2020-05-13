@@ -70,7 +70,7 @@ form.addEventListener('submit', function(event) {
 /////////////////////////
 
 function solvePuzzle() { 
-    if (!ifSolvable) {
+    if (!ifSolvable()) {
         alert ("The puzzle is not solveable because there is a repeat of a number inside row, column or square.")
     }
 
@@ -81,35 +81,23 @@ function solvePuzzle() {
         }
     }
 
-    count = 100; // delete later and replace with "progressMade"
+    reducePossitilities();
 
-    // while puzzles unsolved and progress continues to be made, delete possiblities and convert cells from unsolved sets to solved ints
-    while (unsolvedCellIndexes.size > 0 && count > 0) {
-
-        // delete all possibilities that overlap with values in row, column, square
-        for (var i = 0; i < 9; i++) {
-
-            var unsolvedCellsColumn = getColumnUnsolved(i);
-            var unsolvedCellsRow = getRowUnsolved(i);
-            var unsolvedCellsSquare = getSquareUnsolved(i);
-
-            findSinglePossiblities(unsolvedCellsColumn);
-            findSinglePossiblities(unsolvedCellsRow);
-            findSinglePossiblities(unsolvedCellsSquare);
-            findUniquePossiblities(unsolvedCellsColumn);
-            findUniquePossiblities(unsolvedCellsRow);
-            findUniquePossiblities(unsolvedCellsSquare);
-        }
-
-        count--; // delete later and replace with boolean "progressMade"
+    var numGuesses = 3;
+    while (unsolvedCellIndexes.size > 0 && numGuesses > 0) {
+        makeGuess();
+        reducePossitilities();
+        numGuesses--;
     }
 
+    // print things in console after finished
     console.log("finished puzzle: " + puzzle); //////////////////////// delete later
     for (var j = 0; j < 81; j++) {
-        console.log("cell index: " + j);
-        console.log(puzzle[j]);
-        console.log(" ");
+        // console.log("cell index: " + j);
+        // console.log(puzzle[j]);
+        // console.log(" ");
 
+        // adds unsolved sets to DOM
         if (!Number.isInteger(puzzle[j])) { //////////// delete later
             deleteLr = 0;
             puzzle[j].forEach(deleteLater);
@@ -121,22 +109,43 @@ function solvePuzzle() {
 
 var deleteLr = 0; ////////////////////// delete
 function deleteLater(values) {
-    console.log("testt");
     deleteLr = (deleteLr * 10) + values;
 }
 
 // checks if puzzle solveable - no repeats in columns, rows, squares
 function ifSolvable() {
-    // if getRowSolved contains duplicates
-        // return false
-
-    // if getColumnSolved contains duplicates
-        // return false
-
-    // if getSquareSolved contains duplicates
-        // return false
-
+    for (var i = 0; i < 9; i++) {
+        console.log(getColumnSolved(i));
+        console.log(hasDuplicates(getColumnSolved(i)));
+        console.log(getRowSolved(i));
+        console.log(hasDuplicates(getRowSolved(i)));
+        console.log(getSquareSolved(i));
+        console.log(hasDuplicates(getSquareSolved(i)));
+        if (hasDuplicates(getColumnSolved(i)) || hasDuplicates(getRowSolved(i)) || hasDuplicates(getSquareSolved(i))) {
+            return false;
+        }
+    }
     return true;
+}
+
+function reducePossitilities() {
+    count = 100; // delete later and replace with "progressMade"
+
+    // while puzzles unsolved and progress continues to be made, delete possiblities and convert cells from unsolved sets to solved ints
+    while (unsolvedCellIndexes.size > 0 && count > 0) {
+
+        // delete all possibilities that overlap with values in row, column, square
+        for (var i = 0; i < 9; i++) {
+
+            findSinglePossiblities(getColumnUnsolved(i));
+            findSinglePossiblities(getRowUnsolved(i));
+            findSinglePossiblities(getSquareUnsolved(i));
+            findUniquePossiblities(getColumnUnsolved(i));
+            findUniquePossiblities(getRowUnsolved(i));
+            findUniquePossiblities(getSquareUnsolved(i));
+        }
+        count--; // delete later and replace with boolean "progressMade"
+    }
 }
 
 
@@ -153,7 +162,6 @@ function getColumnUnsolved(colIndex) {
 
 // gets unsolved indexes in a row given an index of the row
 function getRowUnsolved(rowIndex) {
-    //var solvedValues = new Array();
     var unsolvedIndexes = new Array();
     for (var i = rowIndex * 9; i < (rowIndex * 9) + 9; i++) { // gets all indexes in row given which row 
         if (!Number.isInteger(puzzle[i])) {
@@ -165,7 +173,6 @@ function getRowUnsolved(rowIndex) {
 
 // gets unsolved indexes in a square given an index of the square
 function getSquareUnsolved(squIndex) {
-    //var solvedValues = new Array();
     var unsolvedIndexes = new Array();
 
     var indexes = new Array();
@@ -190,8 +197,8 @@ function getSquareUnsolved(squIndex) {
 function getColumnSolved(colIndex) {
     var solvedIndexes = new Array();
     for (var i = colIndex; i < 81; i = i + 9) { // gets all indexes in column given which column 
-        if (!Number.isInteger(puzzle[i])) {
-            solvedIndexes.push(i); // add i to array or something (unsolved indexes)
+        if (Number.isInteger(puzzle[i])) {
+            solvedIndexes.push(puzzle[i]); // add i to array or something (unsolved indexes)
         }
     }
     return solvedIndexes;
@@ -201,8 +208,8 @@ function getColumnSolved(colIndex) {
 function getRowSolved(rowIndex) {
     var solvedIndexes = new Array();
     for (var i = rowIndex * 9; i < (rowIndex * 9) + 9; i++) { // gets all indexes in row given which row 
-        if (!Number.isInteger(puzzle[i])) {
-            solvedIndexes.push(i); // add i to array or something (unsolved indexes)
+        if (Number.isInteger(puzzle[i])) {
+            solvedIndexes.push(puzzle[i]); // add i to array or something (unsolved indexes)
         }
     }
     return solvedIndexes;
@@ -223,8 +230,8 @@ function getSquareSolved(squIndex) {
     }
 
     for (var i = 0; i < 9; i++) { // interates through indexes for indexes array 
-        if (!Number.isInteger(puzzle[indexes[i]])) {
-            solvedIndexes.push(indexes[i]); // add i to array unsolved indexes
+        if (Number.isInteger(puzzle[indexes[i]])) {
+            solvedIndexes.push(puzzle[indexes[i]]); // add i to array unsolved indexes
         }
     }
     return solvedIndexes;
@@ -315,15 +322,36 @@ function deletePossibilities(cellIndex, value) {
 
 // change cell from unsolved to solved -- replace set with value and removed from unsolved indices
 function changeToSolved(cellIndex, value) {
+    if (!hasDuplicates(getColumnSolved) || !hasDuplicates(getRowSolved) || !hasDuplicates(getSquareSolved)) { // if getColumn/Row/SquareSolved doesn't contain duplicate values
 
-    puzzle[cellIndex] = value; // removes set of possibilities at cell index and replaces with value
+        puzzle[cellIndex] = value; // removes set of possibilities at cell index and replaces with value
 
-    unsolvedCellIndexes.delete(cellIndex); // deletes cell index from unsolvedCellIndexes set
+        unsolvedCellIndexes.delete(cellIndex); // deletes cell index from unsolvedCellIndexes set
 
-    document.getElementById(cellIndex.toString()).value = value; // puts solved value onto DOM
-    document.getElementById(cellIndex.toString()).classList.add("solved-value"); // adds css to solved cells
+        document.getElementById(cellIndex.toString()).value = value; // puts solved value onto DOM
+        document.getElementById(cellIndex.toString()).classList.add("solved-value"); // adds css to solved cells
 
-    deletePossibilities(cellIndex, value); // deletes value from possibilities in cell's rows, columns, and squares
+        deletePossibilities(cellIndex, value); // deletes value from possibilities in cell's rows, columns, and squares
+        
+    } else {
+        alert("Puzzle is not solvable due to duplicate values. Or esomething...") // fix later .//////////////////////////////////
+    }
 }
 
+// when can't make any more progress, makes a guess
+function makeGuess() {
 
+}
+
+// returns true if array with solved value has duplicates, false if all unique values
+function hasDuplicates(solvedValues) {
+    var values = new Set();
+    for (var i = 0; i < solvedValues.length; i++) {
+        if (values.has(solvedValues[i])) {
+            return true;
+        } else {
+            values.add(solvedValues[i]);
+        }
+    }
+    return false;
+}
