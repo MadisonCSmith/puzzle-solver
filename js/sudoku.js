@@ -19,7 +19,6 @@
 ///////////
 
 
-var size = 9;
 var puzzle = new Array(81);
 var unsolvedCellIndexes = new Set([0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
                                 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
@@ -30,6 +29,9 @@ var unsolvedCellIndexes = new Set([0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
                                 60, 61, 62, 63, 64, 65, 66, 67, 68, 69,
                                 70, 71, 72, 73, 74, 75, 76, 77, 78, 79,
                                 80]); // while greater than 0, puzzle is unsolved
+var numGuessesLeft = 1;
+var indexLastGuess = -1;
+
 
 
 //////////////////////////
@@ -83,11 +85,10 @@ function solvePuzzle() {
 
     reducePossitilities();
 
-    var numGuesses = 3;
-    while (unsolvedCellIndexes.size > 0 && numGuesses > 0) {
+    while (unsolvedCellIndexes.size > 0 && numGuessesLeft > 0) {
         makeGuess();
         reducePossitilities();
-        numGuesses--;
+        numGuessesLeft--;
     }
 
     // print things in console after finished
@@ -129,7 +130,7 @@ function ifSolvable() {
 }
 
 function reducePossitilities() {
-    count = 100; // delete later and replace with "progressMade"
+    count = 500; // delete later and replace with "progressMade"
 
     // while puzzles unsolved and progress continues to be made, delete possiblities and convert cells from unsolved sets to solved ints
     while (unsolvedCellIndexes.size > 0 && count > 0) {
@@ -340,7 +341,12 @@ function changeToSolved(cellIndex, value) {
 
 // when can't make any more progress, makes a guess
 function makeGuess() {
+    // if (numGuessLeft > 0) {
+    //     var index = unsolvedCellIndexes[0];
+    //     while (puzzle[unsolvedCellIndexes[index]] > 2) {
 
+    //     }
+    // }
 }
 
 // returns true if array with solved value has duplicates, false if all unique values
@@ -354,4 +360,24 @@ function hasDuplicates(solvedValues) {
         }
     }
     return false;
+}
+
+function resetPuzzle() {
+    puzzle = new Array(81);
+    unsolvedCellIndexes = new Set([0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+                            10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+                            20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
+                            30, 31, 32, 33, 34, 35, 36, 37, 38, 39,
+                            40, 41, 42, 43, 44, 45, 46, 47, 48, 49,
+                            50, 51, 52, 53, 54, 55, 56, 57, 58, 59,
+                            60, 61, 62, 63, 64, 65, 66, 67, 68, 69,
+                            70, 71, 72, 73, 74, 75, 76, 77, 78, 79,
+                            80]); // while greater than 0, puzzle is unsolved
+    numGuessesLeft = 1;
+    indexLastGuess = -1;
+
+    for (var i = 0; i < 81; i++) {
+        document.getElementById(i.toString()).value = null;
+    }
+
 }
