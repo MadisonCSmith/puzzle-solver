@@ -45,3 +45,16 @@ button {
     margin-right: 3%;
 }
 
+.given-value {
+    /*color: black;*/
+    font-weight: 500;
+}
+
+.solved-value {
+    /*color: darkgray;*/
+    font-weight: 200;
+}
+
+.unsolved-set {
+    color: lightcoral;
+}

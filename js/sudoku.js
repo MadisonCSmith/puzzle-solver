@@ -54,6 +54,7 @@ form.addEventListener('submit', function(event) {
         if (cell.value) {
             puzzle[i] = parseInt(cell.value); // if value, adds value into array
             unsolvedCellIndexes.delete(i); // removes value from unsolved cell indexes set
+            document.getElementById(i.toString()).classList.add("given-value");
         } else {
             puzzle[i] = new Set([1, 2, 3, 4, 5, 6, 7, 8, 9]); // if no value, adds set into array
         }
@@ -88,9 +89,9 @@ function solvePuzzle() {
         // delete all possibilities that overlap with values in row, column, square
         for (var i = 0; i < 9; i++) {
 
-            var unsolvedCellsColumn = getColumn(i);
-            var unsolvedCellsRow = getRow(i);
-            var unsolvedCellsSquare = getSquare(i);
+            var unsolvedCellsColumn = getColumnUnsolved(i);
+            var unsolvedCellsRow = getRowUnsolved(i);
+            var unsolvedCellsSquare = getSquareUnsolved(i);
 
             findSinglePossiblities(unsolvedCellsColumn);
             findSinglePossiblities(unsolvedCellsRow);
@@ -108,18 +109,39 @@ function solvePuzzle() {
         console.log("cell index: " + j);
         console.log(puzzle[j]);
         console.log(" ");
+
+        if (!Number.isInteger(puzzle[j])) { //////////// delete later
+            deleteLr = 0;
+            puzzle[j].forEach(deleteLater);
+            document.getElementById(j.toString()).value = deleteLr;
+            document.getElementById(j.toString()).classList.add("unsolved-set"); 
+        }
     }
+}
+
+var deleteLr = 0; ////////////////////// delete
+function deleteLater(values) {
+    console.log("testt");
+    deleteLr = (deleteLr * 10) + values;
 }
 
 // checks if puzzle solveable - no repeats in columns, rows, squares
 function ifSolvable() {
-    // do something
+    // if getRowSolved contains duplicates
+        // return false
+
+    // if getColumnSolved contains duplicates
+        // return false
+
+    // if getSquareSolved contains duplicates
+        // return false
+
     return true;
 }
 
 
 // gets unsolved indexes in a column given an index of the column
-function getColumn(colIndex) {
+function getColumnUnsolved(colIndex) {
     var unsolvedIndexes = new Array();
     for (var i = colIndex; i < 81; i = i + 9) { // gets all indexes in column given which column 
         if (!Number.isInteger(puzzle[i])) {
@@ -130,7 +152,7 @@ function getColumn(colIndex) {
 }
 
 // gets unsolved indexes in a row given an index of the row
-function getRow(rowIndex) {
+function getRowUnsolved(rowIndex) {
     //var solvedValues = new Array();
     var unsolvedIndexes = new Array();
     for (var i = rowIndex * 9; i < (rowIndex * 9) + 9; i++) { // gets all indexes in row given which row 
@@ -142,7 +164,7 @@ function getRow(rowIndex) {
 }
 
 // gets unsolved indexes in a square given an index of the square
-function getSquare(squIndex) {
+function getSquareUnsolved(squIndex) {
     //var solvedValues = new Array();
     var unsolvedIndexes = new Array();
 
@@ -162,6 +184,50 @@ function getSquare(squIndex) {
         }
     }
     return unsolvedIndexes;
+}
+
+// gets solved indexes in a column given an index of the column
+function getColumnSolved(colIndex) {
+    var solvedIndexes = new Array();
+    for (var i = colIndex; i < 81; i = i + 9) { // gets all indexes in column given which column 
+        if (!Number.isInteger(puzzle[i])) {
+            solvedIndexes.push(i); // add i to array or something (unsolved indexes)
+        }
+    }
+    return solvedIndexes;
+}
+
+// gets solved indexes in a row given an index of the row
+function getRowSolved(rowIndex) {
+    var solvedIndexes = new Array();
+    for (var i = rowIndex * 9; i < (rowIndex * 9) + 9; i++) { // gets all indexes in row given which row 
+        if (!Number.isInteger(puzzle[i])) {
+            solvedIndexes.push(i); // add i to array or something (unsolved indexes)
+        }
+    }
+    return solvedIndexes;
+}
+
+// gets solved indexes in a square given an index of the square
+function getSquareSolved(squIndex) {
+    var solvedIndexes = new Array();
+
+    var indexes = new Array();
+    var initialIndexes = new Array(0, 3, 6, 27, 30, 33, 54, 57, 60); // array of indexes of squares
+
+    // gets indexes for the square with index squIndex
+    for (var i = 0; i < 27; i = i + 9) {
+        for (var j = 0; j < 3; j++) {
+            indexes.push(initialIndexes[squIndex] + i + j);
+        }
+    }
+
+    for (var i = 0; i < 9; i++) { // interates through indexes for indexes array 
+        if (!Number.isInteger(puzzle[indexes[i]])) {
+            solvedIndexes.push(indexes[i]); // add i to array unsolved indexes
+        }
+    }
+    return solvedIndexes;
 }
 
 // finds sets with single values in unsolved cell sets, and converts cell to solved
@@ -215,9 +281,9 @@ function deletePossibilities(cellIndex, value) {
     var squIndex = Math.floor((Math.floor(rowIndex / 3) * 3) + (colIndex / 3));
     
     // gets indexes of unsolved cells in row/col/square given index of row/col/square
-    var rowUnsolved = getRow(rowIndex);
-    var colUnsolved = getColumn(colIndex);
-    var squUnsolved = getSquare(squIndex);
+    var rowUnsolved = getRowUnsolved(rowIndex);
+    var colUnsolved = getColumnUnsolved(colIndex);
+    var squUnsolved = getSquareUnsolved(squIndex);
 
     // iterates through unsolved cells in row
     for (var i = 0; i < rowUnsolved.length; i++) {
@@ -250,11 +316,12 @@ function deletePossibilities(cellIndex, value) {
 // change cell from unsolved to solved -- replace set with value and removed from unsolved indices
 function changeToSolved(cellIndex, value) {
 
-    puzzle[cellIndex] = value; // removes set of possiblities at cell index and replaces with value
+    puzzle[cellIndex] = value; // removes set of possibilities at cell index and replaces with value
 
     unsolvedCellIndexes.delete(cellIndex); // deletes cell index from unsolvedCellIndexes set
 
     document.getElementById(cellIndex.toString()).value = value; // puts solved value onto DOM
+    document.getElementById(cellIndex.toString()).classList.add("solved-value"); // adds css to solved cells
 
     deletePossibilities(cellIndex, value); // deletes value from possibilities in cell's rows, columns, and squares
 }
