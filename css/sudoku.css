@@ -19,7 +19,7 @@ table {
 }
 
 td {
-    border-left: gray solid 1px;
+    border-left: darkgray solid 1px;
     text-align: center;
     padding: 0px; 
     border-bottom: none;
@@ -32,11 +32,11 @@ td:hover {
 }
 
 tr:nth-child(3n+0) {
-    border-bottom: black solid 2px;
+    border-bottom: black solid 1px;
 }
 
 td:nth-child(3n+0) {
-    border-right: black solid 2px;
+    border-right: black solid 1px;
 }
 
 button {
@@ -57,4 +57,13 @@ button {
 
 .unsolved-set {
     color: lightcoral;
+}
+
+td input {
+    border: #FFFFFF !important;
+    box-shadow: 0 1px 0 0 #ffffff !important;
+}
+
+td input:hover {
+    box-shadow: 0 1px 0 0 #f5f5f5 !important;
 }

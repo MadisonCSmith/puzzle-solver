@@ -3,7 +3,9 @@
 ///////////
 
 // add reset button
-// throw error if not enough info to solve puzzle (if stop making progress)
+// throw error if not enough info to solve puzzle (if stop making progress)/or results unsolveable puzzle
+// reducePossitilities misspelling
+// can edit puzzle after pressing solve and click solve again? or will that mess it up?
 
 
 /// UI ///
@@ -19,6 +21,8 @@
 ///////////
 
 
+/// stack of puzzles for guessing decisions (status of puzzle before last decision)
+
 var puzzle = new Array(81);
 var unsolvedCellIndexes = new Set([0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
                                 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
@@ -30,7 +34,7 @@ var unsolvedCellIndexes = new Set([0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
                                 70, 71, 72, 73, 74, 75, 76, 77, 78, 79,
                                 80]); // while greater than 0, puzzle is unsolved
 var numGuessesLeft = 1;
-var indexLastGuess = -1;
+var indexLastGuess = -1; ///////////// do I need this?????????
 
 
 
@@ -56,13 +60,13 @@ form.addEventListener('submit', function(event) {
         if (cell.value) {
             puzzle[i] = parseInt(cell.value); // if value, adds value into array
             unsolvedCellIndexes.delete(i); // removes value from unsolved cell indexes set
-            document.getElementById(i.toString()).classList.add("given-value");
+            document.getElementById(i.toString()).classList.add("given-value"); // adds css to given value cells
         } else {
             puzzle[i] = new Set([1, 2, 3, 4, 5, 6, 7, 8, 9]); // if no value, adds set into array
         }
     }
     console.log("initial puzzle: " + puzzle);
-    event.preventDefault(); // keeps page from refreshing and erasing data
+    event.preventDefault(); // keeps page from refreshing and erasing data when form is submitted
     solvePuzzle();
 });
 
@@ -91,12 +95,13 @@ function solvePuzzle() {
         numGuessesLeft--;
     }
 
+    if (!ifSolvable()) {
+        alert ("The puzzle is impossible to solve.") ///////////////////////// make it so it doesn't finish solving puzzle
+    }
+
     // print things in console after finished
     console.log("finished puzzle: " + puzzle); //////////////////////// delete later
     for (var j = 0; j < 81; j++) {
-        // console.log("cell index: " + j);
-        // console.log(puzzle[j]);
-        // console.log(" ");
 
         // adds unsolved sets to DOM
         if (!Number.isInteger(puzzle[j])) { //////////// delete later
@@ -116,12 +121,6 @@ function deleteLater(values) {
 // checks if puzzle solveable - no repeats in columns, rows, squares
 function ifSolvable() {
     for (var i = 0; i < 9; i++) {
-        console.log(getColumnSolved(i));
-        console.log(hasDuplicates(getColumnSolved(i)));
-        console.log(getRowSolved(i));
-        console.log(hasDuplicates(getRowSolved(i)));
-        console.log(getSquareSolved(i));
-        console.log(hasDuplicates(getSquareSolved(i)));
         if (hasDuplicates(getColumnSolved(i)) || hasDuplicates(getRowSolved(i)) || hasDuplicates(getSquareSolved(i))) {
             return false;
         }
@@ -138,7 +137,7 @@ function reducePossitilities() {
         // delete all possibilities that overlap with values in row, column, square
         for (var i = 0; i < 9; i++) {
 
-            findSinglePossiblities(getColumnUnsolved(i));
+            findSinglePossiblities(getColumnUnsolved(i)); 
             findSinglePossiblities(getRowUnsolved(i));
             findSinglePossiblities(getSquareUnsolved(i));
             findUniquePossiblities(getColumnUnsolved(i));
@@ -153,9 +152,9 @@ function reducePossitilities() {
 // gets unsolved indexes in a column given an index of the column
 function getColumnUnsolved(colIndex) {
     var unsolvedIndexes = new Array();
-    for (var i = colIndex; i < 81; i = i + 9) { // gets all indexes in column given which column 
+    for (var i = colIndex; i < 81; i = i + 9) { // gets all indexes in column given column index
         if (!Number.isInteger(puzzle[i])) {
-            unsolvedIndexes.push(i); // add i to array or something (unsolved indexes)
+            unsolvedIndexes.push(i); // add i to array of unsolved indexes
         }
     }
     return unsolvedIndexes;
@@ -164,9 +163,9 @@ function getColumnUnsolved(colIndex) {
 // gets unsolved indexes in a row given an index of the row
 function getRowUnsolved(rowIndex) {
     var unsolvedIndexes = new Array();
-    for (var i = rowIndex * 9; i < (rowIndex * 9) + 9; i++) { // gets all indexes in row given which row 
+    for (var i = rowIndex * 9; i < (rowIndex * 9) + 9; i++) { // gets all indexes in row given row index
         if (!Number.isInteger(puzzle[i])) {
-            unsolvedIndexes.push(i); // add i to array or something (unsolved indexes)
+            unsolvedIndexes.push(i); // add i to array of unsolved indexes
         }
     }
     return unsolvedIndexes;
@@ -197,9 +196,9 @@ function getSquareUnsolved(squIndex) {
 // gets solved indexes in a column given an index of the column
 function getColumnSolved(colIndex) {
     var solvedIndexes = new Array();
-    for (var i = colIndex; i < 81; i = i + 9) { // gets all indexes in column given which column 
+    for (var i = colIndex; i < 81; i = i + 9) { // gets all indexes in column given column index
         if (Number.isInteger(puzzle[i])) {
-            solvedIndexes.push(puzzle[i]); // add i to array or something (unsolved indexes)
+            solvedIndexes.push(puzzle[i]); // add i to array of solved indexes
         }
     }
     return solvedIndexes;
@@ -208,9 +207,9 @@ function getColumnSolved(colIndex) {
 // gets solved indexes in a row given an index of the row
 function getRowSolved(rowIndex) {
     var solvedIndexes = new Array();
-    for (var i = rowIndex * 9; i < (rowIndex * 9) + 9; i++) { // gets all indexes in row given which row 
+    for (var i = rowIndex * 9; i < (rowIndex * 9) + 9; i++) { // gets all indexes in row given row index 
         if (Number.isInteger(puzzle[i])) {
-            solvedIndexes.push(puzzle[i]); // add i to array or something (unsolved indexes)
+            solvedIndexes.push(puzzle[i]); // add i to array of solved indexes
         }
     }
     return solvedIndexes;
@@ -232,7 +231,7 @@ function getSquareSolved(squIndex) {
 
     for (var i = 0; i < 9; i++) { // interates through indexes for indexes array 
         if (Number.isInteger(puzzle[indexes[i]])) {
-            solvedIndexes.push(puzzle[indexes[i]]); // add i to array unsolved indexes
+            solvedIndexes.push(puzzle[indexes[i]]); // add i to array solved indexes
         }
     }
     return solvedIndexes;
@@ -252,16 +251,17 @@ function findSinglePossiblities(unsolvedIndexes) {
     }
 }
 
-// find unique values in unsolved cell sets, and converts cell to solved
+// find unique values in unsolved cell sets in a row/column/squae, and converts cell to solved
 function findUniquePossiblities(unsolvedIndexes) {
     var counts = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0);
     var countsIndexes = new Array(-1, -1, -1, -1, -1, -1, -1, -1, -1);
 
     // loops through unsolved indexes
     for (var i = 0; i < unsolvedIndexes.length; i++) { 
+
         if (!Number.isInteger(puzzle[unsolvedIndexes[i]])) {
             var currentSet = puzzle[unsolvedIndexes[i]];
-            var iteratorMaybe = currentSet.values();
+            var iteratorMaybe = currentSet.values(); // fix variable name////////////////////////////////////
 
             // loops through values in unsolved indexes
             for (var j = 0; j < currentSet.size; j++) { 
@@ -321,7 +321,7 @@ function deletePossibilities(cellIndex, value) {
     }
 }
 
-// change cell from unsolved to solved -- replace set with value and removed from unsolved indices
+// change cell from unsolved to solved -- replace set with value and remove from unsolved indices
 function changeToSolved(cellIndex, value) {
     if (!hasDuplicates(getColumnSolved) || !hasDuplicates(getRowSolved) || !hasDuplicates(getSquareSolved)) { // if getColumn/Row/SquareSolved doesn't contain duplicate values
 
@@ -362,7 +362,7 @@ function hasDuplicates(solvedValues) {
     return false;
 }
 
-function resetPuzzle() {
+function resetPuzzle() { /////////////////////////// double check that include all new variables in reset
     puzzle = new Array(81);
     unsolvedCellIndexes = new Set([0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
                             10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
