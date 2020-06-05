@@ -15,7 +15,12 @@
 table {
     margin-bottom: 3%;
     border: black solid 2px;
-    font-size: 24px;
+    font-size: 28px;
+    font-family: "Courier New";
+}
+
+input {
+    text-align: center;
 }
 
 td {
@@ -66,4 +71,17 @@ td input {
 
 td input:hover {
     box-shadow: 0 1px 0 0 #f5f5f5 !important;
+}
+
+/* gets rid of up/down arrows in input fields */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
