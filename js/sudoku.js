@@ -12,9 +12,6 @@
 
 /// UI ///
 // go through all error messages and highlight in red where the error occurs in puzzle, don't just say there's an error
-// make it so when click on box, it highlights everything already there so don't have to highlight/backspace manually
-// put everything in screen as they're found
-// differentiate by color/boldness things inputted and things found
 // stop things from being changed after submitted-- will mess everything up
 // add some animations and stuff to make it look better- fade appearing
 
@@ -35,8 +32,6 @@ var unsolvedCellIndexes = new Set([0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
                                 60, 61, 62, 63, 64, 65, 66, 67, 68, 69,
                                 70, 71, 72, 73, 74, 75, 76, 77, 78, 79,
                                 80]); // while greater than 0, puzzle is unsolved
-var numGuessesLeft = 1;
-var indexLastGuess = -1; ///////////// do I need this?????????
 
 
 
@@ -375,8 +370,6 @@ function resetPuzzle() { /////////////////////////// double check that include a
                             60, 61, 62, 63, 64, 65, 66, 67, 68, 69,
                             70, 71, 72, 73, 74, 75, 76, 77, 78, 79,
                             80]); // while greater than 0, puzzle is unsolved
-    numGuessesLeft = 1;
-    indexLastGuess = -1;
 
     for (var i = 0; i < 81; i++) {
         document.getElementById(i.toString()).value = null;
