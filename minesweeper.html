@@ -20,10 +20,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
     <!-- stylesheet -->
-    <link rel="stylesheet" type="text/css" href="css/blackjack.css">
-
-    <!-- js file -->
-    <script src="js/blackjack.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/minesweeper.css">
 
 </head>
 <body>
@@ -40,46 +37,124 @@
     </nav>
 
     <!-- text above form -->
-    <div id="blackjack-text" class="row"> 
-        <div class="col s10 offset-s1">
-            <p>Assumptions: Game is played with a single standard randomly shuffled deck of cards.</p>
-            <p>Naive rule: Player stands when their hand reaches a particular value, regardless of past cards played or the dealer's hand.</p>
-            <p><b>Objective: What value should a player stand in order to maximize their chance of winning, given the dealer's rules?</b></p>
+    <div class="container">
+        <div id="blackjack-text" class="row"> 
+            <p>Rules ... look up rules and write them here </p>
         </div>
     </div>
 
-    <!-- simulations and results -->
-    <div id="simulation-container"></div>
-        <div class="row">
-            <div id="parameters-container" class="col s4 offset-s1">
-
-                <!-- form for parameters -->
-                <div id='form'>
-                    Value of dealer's hand when the dealer stands:
-                    <form id="dealers-value" action="#">
-                        <p class="range-field">
-                            <input type="range" min="1" max="21" />
-                        </p>
-                    </form>
-                    <br/><br/><br/>
-                    parameters: when dealer stops dealing, when player holds
-                    create dictionary of deck of cards
-                    deal cards to a single persons
-                    deal cards to dealer
-
+    <!-- determine size of game -->
+    <div class="container">
+        <form id="grid-size-form">
+            <div class="row">
+                Grid size: 
+                <div class="input-field inline">
+                    <input value="15" id="grid-width" type="text" class="validate">
                 </div>
-
+                by 
+                <div class="input-field inline">
+                    <input value="10" id="grid-height" type="text" class="validate">
+                </div>
             </div>
+            <input class="waves-effect" type="submit" value="Reset">
+        </form>
+    </div>
 
-            <!-- results -->
-            <div id="results-container" class="col s5 offset-s1">
 
-            </div>
+    <div class="row container">
+        <div class="col s10">
+            <form id="puzzle">
+                <table id="grid"> 
+                    <tbody>
+                        <tr>
+                            <td><input type="number" onClick="this.select();" id="0" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="1" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="2" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="3" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="4" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="5" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="6" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="7" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="8" maxlength="1"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="number" onClick="this.select();" id="9" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="10" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="11" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="12" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="13" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="14" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="15" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="16" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="17" maxlength="1"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="number" onClick="this.select();" id="18" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="19" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="20" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="21" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="22" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="23" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="24" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="25" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="26" maxlength="1"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="number" onClick="this.select();" id="27" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="28" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="29" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="30" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="31" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="32" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="33" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="34" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="35" maxlength="1"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="number" onClick="this.select();" id="36" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="37" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="38" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="39" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="40" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="41" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="42" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="43" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="44" maxlength="1"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="number" onClick="this.select();" id="45" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="46" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="47" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="48" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="49" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="50" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="51" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="52" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="53" maxlength="1"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="number" onClick="this.select();" id="54" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="55" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="56" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="57" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="58" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="59" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="60" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="61" maxlength="1"></td>
+                            <td><input type="number" onClick="this.select();" id="62" maxlength="1"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input type="submit" value="Submit">
+            </form>
         </div>
-
     </div>
     
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
+
+    <!-- js file -->
+    <script src="js/minesweeper.js"></script>
+
 </body>
 </html>

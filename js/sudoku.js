@@ -14,6 +14,7 @@
 // go through all error messages and highlight in red where the error occurs in puzzle, don't just say there's an error
 // stop things from being changed after submitted-- will mess everything up
 // add some animations and stuff to make it look better- fade appearing
+// go through all materialize css/fancy stuff and make it look pretty
 
 
 ///////////
