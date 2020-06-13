@@ -7,3 +7,34 @@
     font-weight: 500;
 }
 
+td {
+    border-radius: 0px;
+}
+
+#puzzle {
+    margin: 5%;
+}
+
+.bomb {
+    background-color: red;
+}
+
+.cleared.light {
+    background-color: #dbdbdb;
+}
+
+.cleared.dark {
+    background-color: #d3d3d3;
+}
+
+.unknown.light {
+  background-color: #4eb3ff;
+}
+
+.unknown.dark {
+    background-color: #22a0ff;
+}
+
+.unknown:hover {
+    opacity: 60%;
+}
