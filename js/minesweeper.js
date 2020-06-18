@@ -87,13 +87,32 @@ function resetGrid() {
 // converts cell to cleared if clicked
 function convertToCleared(id) {
     event.preventDefault();
-    console.log("testing;;;");
     var cell = document.getElementById(id);
     cell.classList.remove('unknown');
     cell.classList.add('cleared');
-    cell.innerHTML = "<input type='number'>";
+    cell.innerHTML = "<input class='cell-input' type='number'>";
+    cell.setAttribute('onClick', "");
 
 }
+
+function convertToCleared(id) {
+    event.preventDefault();
+    var cell = document.getElementById(id);
+    cell.classList.remove('unknown');
+    cell.classList.add('cleared');
+    cell.innerHTML = "<input class='cell-input' type='number'>";
+    cell.setAttribute('onClick', "");
+
+}
+
+function convertToFlagged(id) {
+    event.preventDefault();
+    var cell = document.getElementById(id);
+    cell.classList.remove('unknown');
+    cell.classList.add('flag');
+    cell.setAttribute('onClick', "");
+}
+
 
 
 

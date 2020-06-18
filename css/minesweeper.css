@@ -10,6 +10,7 @@
 table {
     table-layout: fixed;
     width: 50vh;
+    font-size: 6px;
 }
 
 td {
@@ -17,15 +18,13 @@ td {
     padding: 0px;
 }
 
-td:after {
+td:after { /* makes unknown cells square somehow */
     content: '';
     display: block;
     margin-top: 100%;
   }
 
-
-
-.bomb {
+.flag {
     background-color: red;
 }
 
@@ -35,6 +34,12 @@ td:after {
 
 .cleared.dark {
     background-color: #d3d3d3;
+}
+
+.cell-input::after {
+    content: '';
+    display: block;
+    margin-top: 100%;
 }
 
 .unknown.light {
@@ -48,3 +53,4 @@ td:after {
 .unknown:hover {
     opacity: 60%;
 }
+
