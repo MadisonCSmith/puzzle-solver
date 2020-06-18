@@ -12,6 +12,7 @@
 // switch height and width on resize form?
 // make puzzle always square 
 // make sure only enter numbers 1-6 in cell inputs
+// make mobile friendly
 
 
 // calls resize function when resize form submitted
