@@ -10,7 +10,7 @@
 table {
     table-layout: fixed;
     width: 50vh;
-    font-size: 6px;
+    font-size: 2vh;
 }
 
 td {
@@ -18,11 +18,11 @@ td {
     padding: 0px;
 }
 
-td:after { /* makes unknown cells square somehow */
+td.unknown:after { /* makes unknown cells square somehow */
     content: '';
     display: block;
     margin-top: 100%;
-  }
+}
 
 .flag {
     background-color: red;
@@ -33,13 +33,7 @@ td:after { /* makes unknown cells square somehow */
 }
 
 .cleared.dark {
-    background-color: #d3d3d3;
-}
-
-.cell-input::after {
-    content: '';
-    display: block;
-    margin-top: 100%;
+    background-color: #bdbdbd;
 }
 
 .unknown.light {
@@ -54,3 +48,28 @@ td:after { /* makes unknown cells square somehow */
     opacity: 60%;
 }
 
+input {
+    text-align: center;
+    height: 1vh;
+}
+
+td:hover {
+    opacity: 50%;
+}
+
+/* gets rid of up/down arrows in input fields */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+#puzzle {
+    margin: 3%;
+}

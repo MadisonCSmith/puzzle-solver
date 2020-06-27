@@ -23,7 +23,7 @@
     <link rel="stylesheet" type="text/css" href="css/minesweeper.css">
 
 </head>
-<body>
+<body onClick="gameLogic()">
 
     <!-- nav bar -->
     <nav>
@@ -56,7 +56,7 @@
                     <input value="15" id="grid-height" type="text" class="validate">
                 </div>
             </div>
-            <input class="waves-effect" type="submit" value="Reset">
+            <input class="grey lighten-1 waves-effect waves-light btn-small" type="submit" value="Reset Game">
         </form>
     </div>
 
@@ -67,7 +67,6 @@
                 <tbody>
                 </tbody>
             </table>
-            <input type="submit" value="Submit">
         </form>
     </div>
     
