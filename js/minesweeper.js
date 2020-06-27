@@ -94,26 +94,41 @@ function resetGrid() {
             var id = i + "-" + j;
             var cell = document.getElementById(id);
 
-            // if known with a number in it
+            // if cleared cell with a number in it
             if (cell.childNodes.length > 0) { //////////////////////// might have to change this if attach image to flagged cells
 
                 // get value of cell
                 var cellValue = cell.childNodes[0].value;
 
                 // get flagged/unknown counts of surrounding cells
-                var counts = countSurroundingCells(id);
+                var surroundingCells = getSurroundingCells(id);
+                // create array to track # unknown cells, # flagged cells
+                var counter = [0,0];
+
+                // runs through all surrounding cells, determines if unknown or flagged cell and increments counter accordingly
+                surroundingCells.forEach(function(element){
+                    // if unknown, increment # unknown
+                    if (element.className.includes("unknown")) {
+                        counter[0] = counter[0] + 1;
+
+                    // if flagged, increment # flagged
+                    } else if (element.className.includes("flag")) {
+                        counter[1] = counter[1] + 1; 
+                    }
+                });
+                console.log(counter);
 
                 // if number of flagged cells equals value in cell AND number of unknown cells is greater than 0
-                if ((cellValue == counts[1]) && counts[0] > 0) {
+                if ((cellValue == counter[1]) && counter[0] > 0) {
                     // convert all unknown surrounding cells to cleared
                     clearUnknownCells(id)
                 }
 
 
                 // if number of unknown cells is equals to the difference between the value in cell and the number of flagged cells
-                if ((cellValue - counts[1]) == counts[0]) {
+                if ((cellValue - counter[1]) == counter[0]) {
                     // convert all unknown surrounding cells to flagged
-
+                    flagUnknownCells(id);
                 }
             }
 
@@ -140,39 +155,6 @@ function convertToFlagged(id) {
     cell.setAttribute('onClick', "");
 }
 
-// takes id of cell, counts number of flagged and unknown cells surrounding a cell
-function countSurroundingCells(id) {
-    // get row and column values
-    var row = parseInt(id.substring(0, 2));
-    var col = parseInt(id.substring(id.length - 2));
-    if (col < 1) { // parseInt sometimes reads dashes (1-1) as -1 instead of 1 -- reverses negative sign
-        col = col * -1;
-    }
-
-    var surroundingCells = getSurroundingCells(id);
-
-    // create array tracks # unknown cells, # flagged cells
-    var counter = [0,0];
-
-    // run through all surrounding cells
-    counter = surroundingCells.forEach(element => ifUnknownFlagged(element, counter));
-
-    return counter;        
-}
-
-// take cell element and tracker, determines if unknown or flagged cell and increments tracker accordingly
-function ifUnknownFlagged(cell, counter) {
-
-    // if unknown, increment # unknown
-    if (cell.className.includes("unknown")) {
-        counter[0]++;
-
-    // if flagged, increment # flagged
-    } else if (cell.className.includes("flag")) {
-        counter[1]++
-    }
-    return counter;
-}
 
 // converts all surrounding unknown cells to cleared ////////////////////////////// not finished
 function clearUnknownCells(id) {
