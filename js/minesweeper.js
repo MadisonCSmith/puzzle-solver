@@ -17,7 +17,7 @@
 // maybe could optimize so instead of running through every known cell with number- just cells surrounding unknown cells - recursively - or maybe recursive method would make runtime too long
 // have undo button just in case of a mistake
 // add some animation when flagging/clearing so people can see difference more easily
-
+// convert colors to classic gray with black and white (probs will have to add a little color for usability) -- goes better with color scheme
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -106,12 +106,10 @@ function resetGrid() {
         for (var j = 0; j < grid.rows[i].cells.length; j++) {
             var id = i + "-" + j;/////////////////////////////////////////
             var cell = document.getElementById(id);
-            console.log(cell);
 
             // if cleared cell with a number in it
-            if (cell.className.includes("cleared") && cell.childNodes.length > 0) { //////////////////////// might have to change this if attach image to flagged cells
+            if (cell.className.includes("cleared") && cell.children[0].value != "") { //////////////////////// might have to change this if attach image to flagged cells
                 console.log("apparently cleared with number");
-                console.log(cell.children[0].value);
                 // get value of cell
                 var cellValue = cell.childNodes[0].value;
 
@@ -143,7 +141,6 @@ function resetGrid() {
 
                 // if number of unknown cells is equals to the difference between the value in cell and the number of flagged cells
                 if ((cellValue - counter[1]) == counter[0]) {
-                    console.log("a;sdj");
                     // convert all unknown surrounding cells to flagged
                     flagUnknownCells(id);
                 }
@@ -234,17 +231,14 @@ function getSurroundingCells(id) {
 
     if ((col + 1) < grid.rows[0].cells.length) { // if not in the last column, look at cell to the right
         surroundingCells.push(document.getElementById(row + "-" + (col + 1)));
-        console.log(row + "-" + (col + 1));
     }
 
     if ((col + 1) < grid.rows[0].cells.length && 0 < row) { // if not in last column or first row, look at cell one right and one up
         surroundingCells.push(document.getElementById((row - 1) + "-" + (col + 1)));
-        console.log((row - 1) + "-" + (col + 1));
     }
 
     if ((col + 1) < grid.rows[0].cells.length && (row + 1) < grid.rows.length) { // if not in last column or last row, look at cell one down and one right
         surroundingCells.push(document.getElementById((row + 1) + "-" + (col + 1)));
-        console.log((row + 1) + "-" + (col + 1));
     }
 
     if ((row + 1) < grid.rows.length) { // if not in last row, look at cell one down
@@ -254,12 +248,7 @@ function getSurroundingCells(id) {
     if (0 < row) { // if not in first row, lok at cell one up
         surroundingCells.push(document.getElementById((row - 1) + "-" + col));
     }
-    console.log(id);
-    console.log(grid.rows.length);
-    console.log(grid.rows[0].cells.length);
-    console.log(col);
-    console.log(row);
-    console.log(id + " " + surroundingCells);
+
     return surroundingCells;
 }
 
