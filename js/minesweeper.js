@@ -16,6 +16,14 @@
 // write good readMe - for recruiters
 // maybe could optimize so instead of running through every known cell with number- just cells surrounding unknown cells - recursively - or maybe recursive method would make runtime too long
 // have undo button just in case of a mistake
+// add some animation when flagging/clearing so people can see difference more easily
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////// Game Sizing ///////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 // calls resize function when resize form submitted
 document.getElementById('grid-size-form').addEventListener('submit', function() { 
@@ -85,28 +93,37 @@ function resetGrid() {
 
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////// Game Logic ////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
  // called whenever body of DOM is clicked, applies game logic
  function gameLogic() { // call on click on puzzle
-
+    console.log("game logic");
+    
     // runs through every cell
     for (var i = 0; i < grid.rows.length; i++) {
         for (var j = 0; j < grid.rows[i].cells.length; j++) {
-            var id = i + "-" + j;
+            var id = i + "-" + j;/////////////////////////////////////////
             var cell = document.getElementById(id);
+            console.log(cell);
 
             // if cleared cell with a number in it
-            if (cell.childNodes.length > 0) { //////////////////////// might have to change this if attach image to flagged cells
-
+            if (cell.className.includes("cleared") && cell.childNodes.length > 0) { //////////////////////// might have to change this if attach image to flagged cells
+                console.log("apparently cleared with number");
+                console.log(cell.children[0].value);
                 // get value of cell
                 var cellValue = cell.childNodes[0].value;
 
                 // get flagged/unknown counts of surrounding cells
                 var surroundingCells = getSurroundingCells(id);
+
                 // create array to track # unknown cells, # flagged cells
                 var counter = [0,0];
 
                 // runs through all surrounding cells, determines if unknown or flagged cell and increments counter accordingly
                 surroundingCells.forEach(function(element){
+
                     // if unknown, increment # unknown
                     if (element.className.includes("unknown")) {
                         counter[0] = counter[0] + 1;
@@ -116,7 +133,6 @@ function resetGrid() {
                         counter[1] = counter[1] + 1; 
                     }
                 });
-                console.log(counter);
 
                 // if number of flagged cells equals value in cell AND number of unknown cells is greater than 0
                 if ((cellValue == counter[1]) && counter[0] > 0) {
@@ -127,17 +143,19 @@ function resetGrid() {
 
                 // if number of unknown cells is equals to the difference between the value in cell and the number of flagged cells
                 if ((cellValue - counter[1]) == counter[0]) {
+                    console.log("a;sdj");
                     // convert all unknown surrounding cells to flagged
                     flagUnknownCells(id);
                 }
             }
-
         }
     }
 }
 
-// converts cell to cleared if clicked
+// converts cell with given id to cleared
 function convertToCleared(id) {
+    console.log("convert to cleared");
+    console.log("id: " + id);
     event.preventDefault();
     var cell = document.getElementById(id);
     cell.classList.remove('unknown');
@@ -148,6 +166,7 @@ function convertToCleared(id) {
 
 // converts cell with given id to flagged
 function convertToFlagged(id) {
+    console.log("convert to flagged");
     event.preventDefault();
     var cell = document.getElementById(id);
     cell.classList.remove('unknown');
@@ -158,34 +177,38 @@ function convertToFlagged(id) {
 
 // converts all surrounding unknown cells to cleared ////////////////////////////// not finished
 function clearUnknownCells(id) {
+    console.log("clear unknown cells");
     // gets surrounding cells
     var surroundingCells = getSurroundingCells(id);
 
     // runs through all surrounding cells
-    surroundingCells.forEach(element => function() {
+    surroundingCells.forEach(function(element){
+
+        // if unknown cell, convert to cleared
         if (element.className.includes("unknown")) {
-            console.log(element);
+            convertToCleared(element.id);
         }
     });
 }
 
-// converts all surrounding unknown cells to flagged ////////////////////////////// not finished
+// converts all surrounding unknown cells to flagged 
 function flagUnknownCells(id) {
+    console.log("flag unknown cells");
     // gets surrounding cells
     var surroundingCells = getSurroundingCells(id);
 
     // runs through all surrounding cells
-    surroundingCells.forEach(element => function() {
-        if (element.className.includes("flag")) {
-            console.log(element);
+    surroundingCells.forEach(function(element){
+        if (element.className.includes("unknown")) {
+            convertToFlagged(element.id);
         }
     });
 }
 
 
-// returns array of surrounding cells given cell id
+// returns array of surrounding cells given cell id  /////////////////////// returns null values /////////
 function getSurroundingCells(id) {
-
+    console.log("get surrounding cells");
     // array of surrounding cells
     var surroundingCells = new Array();
 
@@ -205,30 +228,38 @@ function getSurroundingCells(id) {
         surroundingCells.push(document.getElementById((row - 1) + "-" + (col - 1)));
     }
 
-    if (0 < col && row < grid.rows[0].cells.length) { // if not in first column or last row, look at cell one left and one below
+    if (0 < col && (row + 1) < grid.rows.length) { // if not in first column or last row, look at cell one left and one below
         surroundingCells.push(document.getElementById((row + 1) + "-" + (col - 1)));
     }
 
-    if (col < grid.rows.length) { // if not in the last column, look at cell to the right
+    if ((col + 1) < grid.rows[0].cells.length) { // if not in the last column, look at cell to the right
         surroundingCells.push(document.getElementById(row + "-" + (col + 1)));
+        console.log(row + "-" + (col + 1));
     }
 
-    if (col < grid.rows.length && 0 < row) { // if not in last column or first row, look at cell one right and one up
+    if ((col + 1) < grid.rows[0].cells.length && 0 < row) { // if not in last column or first row, look at cell one right and one up
         surroundingCells.push(document.getElementById((row - 1) + "-" + (col + 1)));
+        console.log((row - 1) + "-" + (col + 1));
     }
 
-    if (col < grid.rows.length && row < grid.rows[0].cells.length) { // if not in last column or last row, look at cell one down and one right
+    if ((col + 1) < grid.rows[0].cells.length && (row + 1) < grid.rows.length) { // if not in last column or last row, look at cell one down and one right
         surroundingCells.push(document.getElementById((row + 1) + "-" + (col + 1)));
+        console.log((row + 1) + "-" + (col + 1));
     }
 
-    if (row < grid.rows[0].cells.length) { // if not in last row, look at cell one down
+    if ((row + 1) < grid.rows.length) { // if not in last row, look at cell one down
         surroundingCells.push(document.getElementById((row + 1) + "-" + col));
     }
 
     if (0 < row) { // if not in first row, lok at cell one up
         surroundingCells.push(document.getElementById((row - 1) + "-" + col));
     }
-
+    console.log(id);
+    console.log(grid.rows.length);
+    console.log(grid.rows[0].cells.length);
+    console.log(col);
+    console.log(row);
+    console.log(id + " " + surroundingCells);
     return surroundingCells;
 }
 
