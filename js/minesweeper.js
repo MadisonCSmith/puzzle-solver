@@ -18,6 +18,18 @@
 // have undo button just in case of a mistake
 // add some animation when flagging/clearing so people can see difference more easily
 // convert colors to classic gray with black and white (probs will have to add a little color for usability) -- goes better with color scheme
+// set default size to 9*9 or some other classic easy puzzle size
+// remember game size settings - if want to play multiple games -- don't want to have to reset every game
+// easier way to input numbers- pain in the ass to keep entering and entering and entering numbers
+// make squares/puzzle stay the same size and in a square the whole time
+// what if someone wants change number in square (makes mistake) - should redo entire puzzle with each new entry OR have undo buttons (which will also be good for when things are mistakenly cleared)
+// should have undo button (in case clears cell accidently)
+// cells that change status through logic should fade transition to new color
+// should have logics in place to make sure possible -- something isn't cleared that shouldn't be 
+// don't want to ahve to click twice to enter and clear number - make it one click
+// if one cell has a logical domino effect (a number placed in one cell allows you to find another cell, which allows you to find another cell, etc.) -- should be found all at once - shouldn't take multiple clicks on body to get all of them
+// move reset game button from underneath form to under game -- automatically reset game when changing dimensions
+// when click on numbers in resize inputs - should hightlight number automatically so easier to delete
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -33,7 +45,7 @@ document.getElementById('grid-size-form').addEventListener('submit', function() 
 
 // resets and resizes grid 
 function resizeGrid(width, height) {
-    resetGrid();
+    resetGrid(); // maybe instead of resetting each cell, just delete and recreate puzzle in new size
 
     var width = document.getElementById("grid-width").value;
     var height = document.getElementById("grid-height").value; 
@@ -90,7 +102,13 @@ function createNewCell(cell, id) {
 
 // resets values in grid 
 function resetGrid() {
-
+    var row = grid.rows.length;
+    var col = grid.rows[i].cells.length;
+    for (var i = 0; i < row; i++) {
+        for (var j = 0; j < col; j++) {
+            convertToUnsolved(document.getElementById(i + "-" + j));
+        }
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -169,6 +187,20 @@ function convertToFlagged(id) {
     cell.classList.remove('unknown');
     cell.classList.add('flag');
     cell.setAttribute('onClick', "");
+}
+
+// converts cell with given id to flagged
+function convertToUnsolved(id) {
+    console.log("convert to unsolved");
+    event.preventDefault();
+    var cell = document.getElementById(id);
+    if (cell.classList.includes('flag')) {
+        cell.classList.remove('flag');
+    }
+    if (cell.classList.includes('cleared')) {
+        cell.classList.add('cleared');
+    }
+    cell.setAttribute('onClick', "convertToCleared(this.id)");
 }
 
 
