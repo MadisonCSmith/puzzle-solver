@@ -1,13 +1,8 @@
-// fix nav title font
-
 
 // update game each time puzzle updated - adding and removing stuff from puzzle
 // user just needs to input numbers and clear spaces - game inputs bombs and more clear spaces
 // double check that values in resize grid form have to be numbers, resonable numbers- not 100000000, and can reasonably fit on screen
 // replace red color with bombs
-// do click modes - 
-// do color crisscrossed patterns like in other games
-// have input field for number of bombs if present in other games
 // do fancy css stuff so it actually looks good
 // center input fields in resize grid form
 // switch height and width on resize form?
@@ -39,9 +34,9 @@
 
 
 // calls resize function when resize form submitted
-document.getElementById('grid-size-form').addEventListener('submit', function() { 
+document.getElementById('puzzle').addEventListener('submit', function() { 
     event.preventDefault(); // prevent page from refreshing when submitted
-    resizeGrid();
+    resetGrid();
 });
 
 // resets and resizes grid 
@@ -103,14 +98,14 @@ function createNewCell(cell, id) {
 
 // resets values in grid 
 function resetGrid() {
+    console.log("reset grid")
     var grid = document.getElementById("grid");
-    if (grid.children.length > 1) {
+    if (grid.rows.length > 0) {
         var row = grid.rows.length;
         var col = grid.rows[0].cells.length;
-        console.log(col);
         for (var i = 0; i < row; i++) {
             for (var j = 0; j < col; j++) {
-                convertToUnsolved(cell);
+                convertToUnsolved(i + "-" + j);
             }
         }
     }
@@ -175,7 +170,6 @@ function resetGrid() {
 // converts cell with given id to cleared
 function convertToCleared(id) {
     console.log("convert to cleared");
-    console.log("id: " + id);
     event.preventDefault();
     var cell = document.getElementById(id);
     cell.classList.remove('unknown');
@@ -199,12 +193,13 @@ function convertToUnsolved(id) {
     console.log("convert to unsolved");
     event.preventDefault();
     var cell = document.getElementById(id);
-    if (cell.classList.includes('flag')) {
+    if (cell.className.includes('flag')) {
         cell.classList.remove('flag');
     }
-    if (cell.classList.includes('cleared')) {
-        cell.classList.add('cleared');
+    if (cell.className.includes('cleared')) {
+        cell.classList.remove('cleared');
     }
+    cell.classList.add('unknown');
     cell.setAttribute('onClick', "convertToCleared(this.id)");
 }
 
