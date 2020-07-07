@@ -1,5 +1,6 @@
 // fix nav title font
 
+
 // update game each time puzzle updated - adding and removing stuff from puzzle
 // user just needs to input numbers and clear spaces - game inputs bombs and more clear spaces
 // double check that values in resize grid form have to be numbers, resonable numbers- not 100000000, and can reasonably fit on screen
@@ -102,11 +103,15 @@ function createNewCell(cell, id) {
 
 // resets values in grid 
 function resetGrid() {
-    var row = grid.rows.length;
-    var col = grid.rows[i].cells.length;
-    for (var i = 0; i < row; i++) {
-        for (var j = 0; j < col; j++) {
-            convertToUnsolved(document.getElementById(i + "-" + j));
+    var grid = document.getElementById("grid");
+    if (grid.children.length > 1) {
+        var row = grid.rows.length;
+        var col = grid.rows[0].cells.length;
+        console.log(col);
+        for (var i = 0; i < row; i++) {
+            for (var j = 0; j < col; j++) {
+                convertToUnsolved(cell);
+            }
         }
     }
 }
