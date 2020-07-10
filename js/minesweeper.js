@@ -180,25 +180,25 @@ function resetGrid() {
             // adds border around cleared and uncleared areas
             if (cell.className.includes("cleared")) {
                 console.log(cell);
-                if (j < grid.rows[i].cells.length - 1 && document.getElementById(i + "-" + (j + 1)).className.includes("unknown")) {
+                if (j < grid.rows[i].cells.length - 1 && (document.getElementById(i + "-" + (j + 1)).className.includes("unknown") || document.getElementById(i + "-" + (j + 1)).className.includes("flag"))) {
                     cell.classList.add('border-right');
                 } else {
                     cell.classList.remove('border-right');
                 }
 
-                if (j > 0 && document.getElementById(i + "-" + (j - 1)).className.includes("unknown")) {
+                if (j > 0 && (document.getElementById(i + "-" + (j - 1)).className.includes("unknown") || document.getElementById(i + "-" + (j - 1)).className.includes("flag"))) {
                     cell.classList.add('border-left');
                 } else {
                     cell.classList.remove('border-left');
                 }
 
-                if (i < grid.rows.length - 1 && document.getElementById((i + 1) + "-" + j).className.includes("unknown")) {
+                if (i < grid.rows.length - 1 && (document.getElementById((i + 1) + "-" + j).className.includes("unknown") || document.getElementById((i + 1) + "-" + j).className.includes("flag"))) {
                     cell.classList.add('border-bottom');
                 } else {
                     cell.classList.remove('border-bottom');
                 }
 
-                if (i > 0 && document.getElementById((i - 1) + "-" + j).className.includes("unknown")) {
+                if (i > 0 && (document.getElementById((i - 1) + "-" + j).className.includes("unknown") || document.getElementById((i - 1) + "-" + j).className.includes("flag"))) {
                     cell.classList.add('border-top');
                 } else {
                     cell.classList.remove('border-top');

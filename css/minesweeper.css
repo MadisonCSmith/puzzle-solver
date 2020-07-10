@@ -98,17 +98,17 @@ td input:hover {
 }
 
 .border-right {
-    border-right: black 5px solid;
+    border-right: black 3px solid;
 }
 
 .border-left {
-    border-left: black 5px solid;
+    border-left: black 3px solid;
 }
 
 .border-top {
-    border-top: black 5px solid;
+    border-top: black 3px solid;
 }
 
 .border-bottom {
-    border-bottom: black 5px solid;
+    border-bottom: black 3px solid;
 }
