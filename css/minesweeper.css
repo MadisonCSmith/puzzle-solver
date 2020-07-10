@@ -9,8 +9,6 @@
 
 table {
     table-layout: fixed;
-    width: 50vh;
-    font-size: 2vh;
 }
 
 td {
@@ -70,6 +68,47 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-#puzzle {
+#grid {
     margin: 3%;
+}
+
+#width-error {
+    color: red;
+}
+
+#height-error {
+    color: red;
+}
+
+table {
+    height: 50vh;
+}
+  
+td {
+    height: 10px;
+}
+
+td input {
+    border: #FFFFFF !important;
+    box-shadow: 0 1px 0 0 #ffffff !important;
+}
+
+td input:hover {
+    box-shadow: 0 1px 0 0 #f5f5f5 !important;
+}
+
+.border-right {
+    border-right: black 5px solid;
+}
+
+.border-left {
+    border-left: black 5px solid;
+}
+
+.border-top {
+    border-top: black 5px solid;
+}
+
+.border-bottom {
+    border-bottom: black 5px solid;
 }

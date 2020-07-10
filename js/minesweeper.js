@@ -1,17 +1,12 @@
 
-// update game each time puzzle updated - adding and removing stuff from puzzle
-// user just needs to input numbers and clear spaces - game inputs bombs and more clear spaces
 // double check that values in resize grid form have to be numbers, resonable numbers- not 100000000, and can reasonably fit on screen
-// replace red color with bombs
 // do fancy css stuff so it actually looks good
-// center input fields in resize grid form
 // switch height and width on resize form?
 // make puzzle always square 
-// make sure only enter numbers 1-6 in cell inputs - no zeros
+// make sure only enter numbers 1-8 in cell inputs - no zeros
 // make mobile friendly
 // write good readMe - for recruiters
-// maybe could optimize so instead of running through every known cell with number- just cells surrounding unknown cells - recursively - or maybe recursive method would make runtime too long
-// have undo button just in case of a mistake
+// have undo button just in case of a mistake  ---------- wait - right now not worth effort ------------
 // add some animation when flagging/clearing so people can see difference more easily
 // convert colors to classic gray with black and white (probs will have to add a little color for usability) -- goes better with color scheme
 // set default size to 9*9 or some other classic easy puzzle size
@@ -26,25 +21,41 @@
 // if one cell has a logical domino effect (a number placed in one cell allows you to find another cell, which allows you to find another cell, etc.) -- should be found all at once - shouldn't take multiple clicks on body to get all of them
 // move reset game button from underneath form to under game -- automatically reset game when changing dimensions
 // when click on numbers in resize inputs - should hightlight number automatically so easier to delete
+// maybe instead of alert, do red text and set number back to original value
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////// Game Sizing ///////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
+var width = 9;
+var height = 9;
 
-// calls resize function when resize form submitted
+// calls resize function when reset button is clicked
 document.getElementById('puzzle').addEventListener('submit', function() { 
     event.preventDefault(); // prevent page from refreshing when submitted
     resetGrid();
 });
 
 // resets and resizes grid 
-function resizeGrid(width, height) {
-    resetGrid(); // maybe instead of resetting each cell, just delete and recreate puzzle in new size
+function resizeGrid() {
+    //resetGrid(); // maybe instead of resetting each cell, just delete and recreate puzzle in new size
+    if (document.getElementById("grid-width").value > 1 && document.getElementById("grid-width").value <= 30) {
+        width = document.getElementById("grid-width").value;
+        document.getElementById("width-error").innerHTML ="";
+    } else {
+        document.getElementById("width-error").innerHTML = "Values must be between 2 and 30.";
+        document.getElementById("grid-width").value = width;
+    }
 
-    var width = document.getElementById("grid-width").value;
-    var height = document.getElementById("grid-height").value; 
+    if (document.getElementById("grid-height").value > 1 && document.getElementById("grid-height").value <= 30) {
+        height = document.getElementById("grid-height").value; 
+        document.getElementById("height-error").innerHTML ="";
+    } else {
+        document.getElementById("height-error").innerHTML ="Values must be between 2 and 30."
+        document.getElementById("grid-height").value = height;
+    }
+
     var grid = document.getElementById("grid");
 
     // resizes number of columns
@@ -118,6 +129,8 @@ function resetGrid() {
  // called whenever body of DOM is clicked, applies game logic
  function gameLogic() { // call on click on puzzle
     console.log("game logic");
+
+    resizeGrid(); // resize grid each time if necessary
     
     // runs through every cell
     for (var i = 0; i < grid.rows.length; i++) {
@@ -161,6 +174,34 @@ function resetGrid() {
                 if ((cellValue - counter[1]) == counter[0]) {
                     // convert all unknown surrounding cells to flagged
                     flagUnknownCells(id);
+                }
+            }
+
+            // adds border around cleared and uncleared areas
+            if (cell.className.includes("cleared")) {
+                console.log(cell);
+                if (j < grid.rows[i].cells.length - 1 && document.getElementById(i + "-" + (j + 1)).className.includes("unknown")) {
+                    cell.classList.add('border-right');
+                } else {
+                    cell.classList.remove('border-right');
+                }
+
+                if (j > 0 && document.getElementById(i + "-" + (j - 1)).className.includes("unknown")) {
+                    cell.classList.add('border-left');
+                } else {
+                    cell.classList.remove('border-left');
+                }
+
+                if (i < grid.rows.length - 1 && document.getElementById((i + 1) + "-" + j).className.includes("unknown")) {
+                    cell.classList.add('border-bottom');
+                } else {
+                    cell.classList.remove('border-bottom');
+                }
+
+                if (i > 0 && document.getElementById((i - 1) + "-" + j).className.includes("unknown")) {
+                    cell.classList.add('border-top');
+                } else {
+                    cell.classList.remove('border-top');
                 }
             }
         }
@@ -283,6 +324,7 @@ function getSurroundingCells(id) {
 
     return surroundingCells;
 }
+
 
 
 resizeGrid(); // calls function straight away to create grid - grid is initally empty

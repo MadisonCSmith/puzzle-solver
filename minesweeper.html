@@ -39,7 +39,7 @@
     <!-- text above form -->
     <div class="container">
         <div id="blackjack-text" class="row"> 
-            <p>Rules ... look up rules and write them here </p>
+            <p>Rules ... look up rules and write them here........user just needs to input numbers and clear spaces - game inputs bombs and more clear spaces </p>
         </div>
     </div>
 
@@ -49,13 +49,15 @@
             <div class="row">
                 Grid size: 
                 <div class="input-field inline">
-                    <input value="10" id="grid-width" type="text" class="validate">
+                    <input value="9" id="grid-width" type="text" class="validate">
                 </div>
                 by 
                 <div class="input-field inline">
-                    <input value="15" id="grid-height" type="text" class="validate">
+                    <input value="9" id="grid-height" type="text" class="validate">
                 </div>
             </div>
+            <p id="width-error"></p>
+            <p id="height-error"></p>
         </form>
     </div>
 
@@ -66,7 +68,7 @@
                 <tbody>
                 </tbody>
             </table>
-            <input class="grey lighten-1 waves-effect waves-light btn-small" type="submit" value="Reset Game">
+            <input id="reset-button" class="grey lighten-1 waves-effect waves-light btn-small" type="submit" value="Reset Game">
         </form>
     </div>
     
