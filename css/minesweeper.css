@@ -16,6 +16,10 @@ td {
     padding: 0px;
 }
 
+td.transition {
+    transition: background-color 2s;
+}
+
 td.unknown:after { /* makes unknown cells square somehow */
     content: '';
     display: block;
