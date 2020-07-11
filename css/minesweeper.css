@@ -16,8 +16,8 @@ td {
     padding: 0px;
 }
 
-td.transition {
-    transition: background-color 2s;
+.transition {
+    transition: background-color 1s;
 }
 
 td.unknown:after { /* makes unknown cells square somehow */
@@ -39,11 +39,11 @@ td.unknown:after { /* makes unknown cells square somehow */
 }
 
 .unknown.light {
-  background-color: #4eb3ff;
+  background-color: #505050; /*#4eb3ff;*/
 }
 
 .unknown.dark {
-    background-color: #22a0ff;
+    background-color: #303030;/*#22a0ff;*/
 }
 
 .unknown:hover {

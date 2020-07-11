@@ -3,7 +3,6 @@
 // do fancy css stuff so it actually looks good
 // switch height and width on resize form?
 // make puzzle always square 
-// make sure only enter numbers 1-8 in cell inputs - no zeros
 // make mobile friendly
 // write good readMe - for recruiters
 // have undo button just in case of a mistake  ---------- wait - right now not worth effort ------------
@@ -259,6 +258,7 @@ function clearUnknownCells(id) {
 
         // if unknown cell, convert to cleared
         if (element.className.includes("unknown")) {
+            element.classList.add("transition");
             convertToCleared(element.id);
         }
     });
@@ -273,6 +273,7 @@ function flagUnknownCells(id) {
     // runs through all surrounding cells
     surroundingCells.forEach(function(element){
         if (element.className.includes("unknown")) {
+            element.classList.add("transition");
             convertToFlagged(element.id);
         }
     });
