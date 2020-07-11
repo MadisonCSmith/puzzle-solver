@@ -1,21 +1,17 @@
 
-// double check that values in resize grid form have to be numbers, resonable numbers- not 100000000, and can reasonably fit on screen
 // do fancy css stuff so it actually looks good
-// switch height and width on resize form?
 // make puzzle always square 
 // make mobile friendly
 // write good readMe - for recruiters
 // have undo button just in case of a mistake  ---------- wait - right now not worth effort ------------
-// add some animation when flagging/clearing so people can see difference more easily
 // convert colors to classic gray with black and white (probs will have to add a little color for usability) -- goes better with color scheme
-// remember game size settings - if want to play multiple games -- don't want to have to reset every game
 // easier way to input numbers- pain in the ass to keep entering and entering and entering numbers
 // make squares/puzzle stay the same size and in a square the whole time
-// cells that change status through logic should fade transition to new color
 // should have logics in place to make sure possible -- something isn't cleared that shouldn't be 
 // don't want to ahve to click twice to enter and clear number - make it one click
 // if one cell has a logical domino effect (a number placed in one cell allows you to find another cell, which allows you to find another cell, etc.) -- should be found all at once - shouldn't take multiple clicks on body to get all of them
 // when click on numbers in resize inputs - should hightlight number automatically so easier to delete
+// organize css file
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
