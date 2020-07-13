@@ -12,6 +12,7 @@
 // if one cell has a logical domino effect (a number placed in one cell allows you to find another cell, which allows you to find another cell, etc.) -- should be found all at once - shouldn't take multiple clicks on body to get all of them
 // when click on numbers in resize inputs - should hightlight number automatically so easier to delete
 // organize css file
+// make sure number in cells are between 1 and number of unknown cells
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -130,11 +131,11 @@ function resetGrid() {
     // runs through every cell
     for (var i = 0; i < grid.rows.length; i++) {
         for (var j = 0; j < grid.rows[i].cells.length; j++) {
-            var id = i + "-" + j;/////////////////////////////////////////
+            var id = i + "-" + j;
             var cell = document.getElementById(id);
 
             // if cleared cell with a number in it
-            if (cell.className.includes("cleared") && cell.children[0].value != "") { //////////////////////// might have to change this if attach image to flagged cells
+            if (cell.className.includes("cleared") && cell.children[0].value != "") { 
                 console.log("apparently cleared with number");
                 // get value of cell
                 var cellValue = cell.childNodes[0].value;
@@ -243,7 +244,7 @@ function convertToUnsolved(id) {
 }
 
 
-// converts all surrounding unknown cells to cleared ////////////////////////////// not finished
+// converts all surrounding unknown cells to cleared
 function clearUnknownCells(id) {
     console.log("clear unknown cells");
     // gets surrounding cells
@@ -276,7 +277,7 @@ function flagUnknownCells(id) {
 }
 
 
-// returns array of surrounding cells given cell id  /////////////////////// returns null values /////////
+// returns array of surrounding cells given cell id 
 function getSurroundingCells(id) {
     console.log("get surrounding cells");
     // array of surrounding cells
@@ -318,7 +319,7 @@ function getSurroundingCells(id) {
         surroundingCells.push(document.getElementById((row + 1) + "-" + col));
     }
 
-    if (0 < row) { // if not in first row, lok at cell one up
+    if (0 < row) { // if not in first row, look at cell one up
         surroundingCells.push(document.getElementById((row - 1) + "-" + col));
     }
 
