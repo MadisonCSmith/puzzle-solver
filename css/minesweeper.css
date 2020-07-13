@@ -10,6 +10,7 @@
 table {
     table-layout: fixed;
     height: 10%;
+    height: 50vh;
 }
 
 td {
@@ -56,11 +57,12 @@ td.unknown:after { /* makes unknown cells square somehow */
 input {
     text-align: center;
     height: 100% !important;
+    margin-bottom: 0px;
 }
 
 #grid input {
-    font-size: 48px !important;
-    color: #404040;
+    font-size: 36px !important;
+    color: #727272;
 }
 
 td:hover {
@@ -81,7 +83,7 @@ input[type=number] {
 }
 
 #grid {
-    margin: 3%;
+    margin: auto;
 }
 
 #width-error {
@@ -90,14 +92,6 @@ input[type=number] {
 
 #height-error {
     color: red;
-}
-
-table {
-    height: 50vh;
-}
-  
-td {
-    height: 10px;
 }
 
 td.light input {
@@ -115,19 +109,24 @@ td input:hover {
 }
 
 .border-right {
-    border-right:#505050 2px solid;
+    border-right:#727272 2px solid;
 }
 
 .border-left {
-    border-left: #505050 2px solid;
+    border-left: #727272 2px solid;
 }
 
 .border-top {
-    border-top: #505050 2px solid;
+    border-top: #727272 2px solid;
 }
 
 .border-bottom {
-    border-bottom: #505050 2px solid;
+    border-bottom: #727272 2px solid;
+}
+
+#puzzle i {
+    float: right;
+    margin: 5%;
 }
 
 
