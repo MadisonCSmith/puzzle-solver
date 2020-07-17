@@ -6,8 +6,8 @@
 // throw error if not enough info to solve puzzle (if stop making progress)/or results unsolveable puzzle
 // reducePossitilities misspelling
 // can edit puzzle after pressing solve and click solve again? or will that mess it up?
-// make responsive to different sizes
 // organize css file
+// easier way to input numbers- pain in the ass to keep entering and entering and entering numbers  ----- ml project?? ------
 
 
 /// UI ///

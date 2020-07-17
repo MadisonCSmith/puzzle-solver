@@ -1,18 +1,12 @@
 
 // do fancy css stuff so it actually looks good
-// make puzzle always square 
 // make mobile friendly
 // write good readMe - for recruiters
 // have undo button just in case of a mistake  ---------- wait - right now not worth effort ------------
-// convert colors to classic gray with black and white (probs will have to add a little color for usability) -- goes better with color scheme
-// easier way to input numbers- pain in the ass to keep entering and entering and entering numbers
-// make squares/puzzle stay the same size and in a square the whole time
-// should have logics in place to make sure possible -- something isn't cleared that shouldn't be 
 // don't want to ahve to click twice to enter and clear number - make it one click
 // if one cell has a logical domino effect (a number placed in one cell allows you to find another cell, which allows you to find another cell, etc.) -- should be found all at once - shouldn't take multiple clicks on body to get all of them
 // when click on numbers in resize inputs - should hightlight number automatically so easier to delete
-// organize css file
-// make sure number in cells are between 1 and number of unknown cells
+// organize css file - look up how to
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -134,9 +128,10 @@ function resetGrid() {
             var id = i + "-" + j;
             var cell = document.getElementById(id);
 
-            // if cleared cell with a number in it
+            // if cleared cell with a number in it than is between 1 and number of unknown cells
             if (cell.className.includes("cleared") && cell.children[0].value != "") { 
                 console.log("apparently cleared with number");
+
                 // get value of cell
                 var cellValue = cell.childNodes[0].value;
 
@@ -159,17 +154,32 @@ function resetGrid() {
                     }
                 });
 
-                // if number of flagged cells equals value in cell AND number of unknown cells is greater than 0
-                if ((cellValue == counter[1]) && counter[0] > 0) {
-                    // convert all unknown surrounding cells to cleared
-                    clearUnknownCells(id)
-                }
+                // if value in cell is not between 1 and number of unknown cells
+                if (cell.className.includes("cleared") && cell.children[0].value != "" && (cell.children[0].value > counter[0] || cell.children[0].value < 0)) {
+                    console.log("weird value in cell");
+                    console.log(counter[0] + " is more than " + cell.children[0].value);
+
+                    document.getElementById("value-error").innerHTML ="Values must be between 1 and the number unknown cells surrounding each cell."
+                    cell.classList.add("error-cell");
+
+                // if value in cell is between 1 and number of unknown cells
+                } else {
+                    cell.classList.remove("error-cell");
+                    document.getElementById("value-error").innerHTML ="";
 
 
-                // if number of unknown cells is equals to the difference between the value in cell and the number of flagged cells
-                if ((cellValue - counter[1]) == counter[0]) {
-                    // convert all unknown surrounding cells to flagged
-                    flagUnknownCells(id);
+                    // if number of flagged cells equals value in cell AND number of unknown cells is greater than 0
+                    if ((cellValue == counter[1]) && counter[0] > 0) {
+                        // convert all unknown surrounding cells to cleared
+                        clearUnknownCells(id)
+                    }
+
+
+                    // if number of unknown cells is equals to the difference between the value in cell and the number of flagged cells
+                    if ((cellValue - counter[1]) == counter[0]) {
+                        // convert all unknown surrounding cells to flagged
+                        flagUnknownCells(id);
+                    }
                 }
             }
 
@@ -247,6 +257,7 @@ function convertToUnsolved(id) {
 // converts all surrounding unknown cells to cleared
 function clearUnknownCells(id) {
     console.log("clear unknown cells");
+
     // gets surrounding cells
     var surroundingCells = getSurroundingCells(id);
 

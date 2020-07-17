@@ -19,7 +19,7 @@ td {
 }
 
 .transition {
-    transition: background-color 1s;
+    transition: background-color 5s;
 }
 
 td.unknown:after { /* makes unknown cells square somehow */
@@ -94,6 +94,10 @@ input[type=number] {
     color: red;
 }
 
+#value-error {
+    color: red;
+}
+
 td.light input {
     border: #FFFFFF !important;
     box-shadow: 0 1px 0 0 #F5F5F5 !important;
@@ -129,6 +133,19 @@ td input:hover {
     margin: 5%;
 }
 
+#grid-width {
+    border: darkgray;
+    box-shadow: 0 1px 0 0 lightgray;
+}
+
+#grid-height {
+    border: pink ;
+    box-shadow: 0 1px 0 0 lightgray;
+}
+
+.error-cell {
+    background-color: #ff8784 !important;
+}
 
 /*  Media Queries */
 
