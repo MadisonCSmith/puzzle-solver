@@ -7,6 +7,9 @@
 // if one cell has a logical domino effect (a number placed in one cell allows you to find another cell, which allows you to find another cell, etc.) -- should be found all at once - shouldn't take multiple clicks on body to get all of them
 // when click on numbers in resize inputs - should hightlight number automatically so easier to delete
 // organize css file - look up how to
+// make it so grid size 2*22 isn't scrolling
+// make it so it doesn't error when all cells known around number -- unknown or flagged cells
+// weird line on error cells
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -154,12 +157,12 @@ function resetGrid() {
                     }
                 });
 
-                // if value in cell is not between 1 and number of unknown cells
-                if (cell.className.includes("cleared") && cell.children[0].value != "" && (cell.children[0].value > counter[0] || cell.children[0].value < 0)) {
+                // if value in cell is not between 1 and number of unknown + flagged cells
+                if (cell.className.includes("cleared") && cell.children[0].value != "" && (cell.children[0].value > (counter[0] + counter[1]) || cell.children[0].value < 0)) {
                     console.log("weird value in cell");
                     console.log(counter[0] + " is more than " + cell.children[0].value);
 
-                    document.getElementById("value-error").innerHTML ="Values must be between 1 and the number unknown cells surrounding each cell."
+                    document.getElementById("value-error").innerHTML ="Cell values must be between 1 and the number of unknown and flagged cells surrounding each cell."
                     cell.classList.add("error-cell");
 
                 // if value in cell is between 1 and number of unknown cells
@@ -223,6 +226,7 @@ function convertToCleared(id) {
     cell.classList.add('cleared');
     cell.innerHTML = "<input class='cell-input' type='number'>";
     cell.setAttribute('onClick', "");
+    cell.firstChild.setAttribute("onclick", "this.select()");
 }
 
 // converts cell with given id to flagged

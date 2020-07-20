@@ -98,6 +98,16 @@ input[type=number] {
     color: red;
 }
 
+td.light.error-cell input {
+    border: #ff8784 !important;
+    box-shadow: 0 1px 0 0 #ff8784 !important;
+}
+
+td.dark.error-cell input {
+    border: #ff8784 !important;
+    box-shadow: 0 1px 0 0 #ff8784 !important;
+}
+
 td.light input {
     border: #FFFFFF !important;
     box-shadow: 0 1px 0 0 #F5F5F5 !important;
