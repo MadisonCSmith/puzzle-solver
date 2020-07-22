@@ -8,8 +8,7 @@
 // when click on numbers in resize inputs - should hightlight number automatically so easier to delete
 // organize css file - look up how to
 // make it so grid size 2*22 isn't scrolling
-// make it so it doesn't error when all cells known around number -- unknown or flagged cells
-// weird line on error cells
+
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -227,6 +226,7 @@ function convertToCleared(id) {
     cell.innerHTML = "<input class='cell-input' type='number'>";
     cell.setAttribute('onClick', "");
     cell.firstChild.setAttribute("onclick", "this.select()");
+    cell.firstChild.focus(); // causes text cursor to occur when cell is cleared
 }
 
 // converts cell with given id to flagged
