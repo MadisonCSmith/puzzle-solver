@@ -15,6 +15,11 @@
 // stop things from being changed after submitted-- will mess everything up
 // add some animations and stuff to make it look better- fade appearing
 // go through all materialize css/fancy stuff and make it look pretty
+// get rid of console logs
+// fix the jumping around on input focus when new cells cleared/flagged
+// delete random comments/commented out code
+// edit text
+
 
 
 ///////////

@@ -8,18 +8,17 @@
 }
 
 table {
-    table-layout: fixed;
-    height: 10%;
-    height: 50vh;
+    table-layout: fixed;   /* problem code? */
 }
 
 td {
     border-radius: 0px;
     padding: 0px;
+    width: 42px; /* has to be min 42px or else cell isn't a square when input box added */ 
 }
 
 .transition {
-    transition: background-color 5s;
+    transition: background-color 2s;
 }
 
 td.unknown:after { /* makes unknown cells square somehow */
@@ -56,12 +55,12 @@ td.unknown:after { /* makes unknown cells square somehow */
 
 input {
     text-align: center;
-    height: 100% !important;
-    margin-bottom: 0px;
+    line-height: 100% !important;
+    margin: 0 0 0 0 !important;
 }
 
 #grid input {
-    font-size: 36px !important;
+    font-size: 100% !important;
     color: #727272;
 }
 
@@ -162,21 +161,21 @@ td input:hover {
 @media screen and (max-width: 21000px) {
     
     table {
-        width: 75vh;
+        width: 50vw; 
     }
 }
 
 @media screen and (max-width: 1100px) {
 
     table {
-        width: 75vh;
+        width: 80vw;
     }
 }
 
 @media screen and (max-width: 500px) {
 
     table {
-        width: 90vh;
+        width: 100vw;
     }
 }
 

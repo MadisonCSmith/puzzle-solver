@@ -1,13 +1,18 @@
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////// To Do ///////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // do fancy css stuff so it actually looks good
 // make mobile friendly
 // write good readMe - for recruiters
 // have undo button just in case of a mistake  ---------- wait - right now not worth effort ------------
-// don't want to ahve to click twice to enter and clear number - make it one click
 // if one cell has a logical domino effect (a number placed in one cell allows you to find another cell, which allows you to find another cell, etc.) -- should be found all at once - shouldn't take multiple clicks on body to get all of them
-// when click on numbers in resize inputs - should hightlight number automatically so easier to delete
 // organize css file - look up how to
 // make it so grid size 2*22 isn't scrolling
+// get rid of console logs
+// fix the jumping around on input focus when new cells cleared/flagged
+// delete random comments/commented out code
+// edit text
 
 
 
@@ -39,7 +44,7 @@ function resizeGrid() {
         height = document.getElementById("grid-height").value; 
         document.getElementById("height-error").innerHTML ="";
     } else {
-        document.getElementById("height-error").innerHTML ="Values must be between 2 and 30."
+        document.getElementById("height-error").innerHTML ="Grid dimensions must be between 2 and 30."
         document.getElementById("grid-height").value = height;
     }
 
@@ -118,11 +123,16 @@ function resetGrid() {
 /////////////////////////////////////////// Game Logic ////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// keeps calling game logic while progress is being made (cells cleared or flagged) - helps dominio effect
+var makeProgress = false; // 
+
  // called whenever body of DOM is clicked, applies game logic
  function gameLogic() { // call on click on puzzle
     console.log("game logic");
 
     resizeGrid(); // resize grid each time if necessary
+
+    makeProgress = false; // resets to false each time gameLogic method called 
     
     // runs through every cell
     for (var i = 0; i < grid.rows.length; i++) {
@@ -212,6 +222,12 @@ function resetGrid() {
                     cell.classList.remove('border-top');
                 }
             }
+
+            // goes through logic again as long as cells keep getting cleared/flagged
+            if (makeProgress == true) {
+                console.log("made progress is true");
+                gameLogic();
+            }
         }
     }
 }
@@ -227,6 +243,7 @@ function convertToCleared(id) {
     cell.setAttribute('onClick', "");
     cell.firstChild.setAttribute("onclick", "this.select()");
     cell.firstChild.focus(); // causes text cursor to occur when cell is cleared
+    makeProgress = true; // resets to true if cell cleared - keeps track if game logic needs to be called again
 }
 
 // converts cell with given id to flagged
@@ -237,6 +254,7 @@ function convertToFlagged(id) {
     cell.classList.remove('unknown');
     cell.classList.add('flag');
     cell.setAttribute('onClick', "");
+    makeProgress = true; // resets to true if cell cleared - keeps track if game logic needs to be called again
 }
 
 // converts cell with given id to unsolved
