@@ -4,7 +4,7 @@
 
 // add reset button
 // throw error if not enough info to solve puzzle (if stop making progress)/or results unsolveable puzzle
-// reducePossitilities misspelling
+// reducePossibilities misspelling
 // can edit puzzle after pressing solve and click solve again? or will that mess it up?
 // organize css file
 // easier way to input numbers- pain in the ass to keep entering and entering and entering numbers  ----- ml project?? ------
@@ -41,9 +41,9 @@ var unsolvedCellIndexes = new Set([0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
 
 
 
-//////////////////////////
-/// gets data from form //
-//////////////////////////
+///////////////////////////
+/// gets data from form ///
+///////////////////////////
 
 
 var form = document.getElementById('puzzle');
@@ -90,11 +90,11 @@ function solvePuzzle() {
         }
     }
 
-    reducePossitilities();
+    reducePossibilities();
 
     while (unsolvedCellIndexes.size > 0 && numGuessesLeft > 0) {
         makeGuess();
-        reducePossitilities();
+        reducePossibilities();
         numGuessesLeft--;
     }
 
@@ -131,7 +131,7 @@ function ifSolvable() {
     return true;
 }
 
-function reducePossitilities() {
+function reducePossibilities() {
     count = 500; // delete later and replace with "progressMade"
 
     // while puzzles unsolved and progress continues to be made, delete possiblities and convert cells from unsolved sets to solved ints

@@ -13,7 +13,7 @@
 // fix the jumping around on input focus when new cells cleared/flagged
 // delete random comments/commented out code
 // edit text
-
+// nav bar working when on smaller screens?
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -17,19 +17,20 @@ table {
     border: black solid 2px;
     font-size: 28px;
     font-family: "Courier New";
+    float: center;
 }
 
 input {
     text-align: center;
+    margin: 0 0 0 0 !important;
 }
 
 td {
     border-left: darkgray solid 1px;
     text-align: center;
     padding: 0px; 
-    border-bottom: none;
+    border-bottom: darkgray solid 1px;
     border-top: none;
-    
 }
 
 td:hover {
@@ -37,11 +38,11 @@ td:hover {
 }
 
 tr:nth-child(3n+0) {
-    border-bottom: black solid 1px;
+    border-bottom: black solid 2px;
 }
 
 td:nth-child(3n+0) {
-    border-right: black solid 1px;
+    border-right: black solid 2px;
 }
 
 button {
@@ -85,3 +86,12 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+#submit-button {
+    float: right;
+}
+
+#reset-button {
+    float: left;
+}
+

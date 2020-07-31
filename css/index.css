@@ -14,15 +14,69 @@ nav {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    opacity: 0.7;
+    opacity: 0.9;
+    position: absolute;
     z-index: -1;
  }
 
 #landing-text {
-    font-size: 1000%;
     font-weight: 700;
     font-family: "Courier New";
-    position: absolute;
-    left: 5%;
-    top: 25%;
+    color: 	#f2f3f4;
+    z-index: 3;
+    text-align: center;
  }
+
+#title-background {
+    background-color: #201f27; /*#2c2a35; */
+    z-index: 2;  
+    border-radius: 2px;
+    opacity: 0.9;
+}
+
+
+@media screen and (max-width: 21000px) {
+    
+    #landing-text {
+        font-size: 12vw; 
+    }
+
+    #title-background {
+        padding: 1%;
+        position: absolute;
+        left: 5%;
+        top: 25%;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+
+    #landing-text {
+        font-size: 20vw;
+    }
+
+    #title-background {
+        padding: 2%;
+        margin: 0 auto;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%); /* centers element */
+    }
+}
+
+@media screen and (max-width: 500px) {
+
+    #landing-text {
+        font-size: 25vw;
+    }
+
+    #title-background {
+        padding: 2%;
+        margin: 0 auto;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%); /* centers element */
+    }
+}

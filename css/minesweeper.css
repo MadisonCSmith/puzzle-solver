@@ -14,7 +14,8 @@ table {
 td {
     border-radius: 0px;
     padding: 0px;
-    width: 42px; /* has to be min 42px or else cell isn't a square when input box added */ 
+    min-width: 45px !important; /* has to be min 42px or else cell isn't a square when input box added */ 
+    min-width: 100px !important; /* or else the cells will get crazy big */ 
 }
 
 .transition {
@@ -158,7 +159,7 @@ td input:hover {
 
 /*  Media Queries */
 
-@media screen and (max-width: 21000px) {
+/*@media screen and (max-width: 21000px) {
     
     table {
         width: 50vw; 
@@ -177,6 +178,6 @@ td input:hover {
     table {
         width: 100vw;
     }
-}
+}*/
 
 
