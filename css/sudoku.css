@@ -26,11 +26,11 @@ input {
 }
 
 td {
-    border-left: darkgray solid 1px;
+    border: darkgray solid 1px;
     text-align: center;
     padding: 0px; 
-    border-bottom: darkgray solid 1px;
-    border-top: none;
+    /* border-bottom: darkgray solid 1px; */
+    /* border-top: none; */
 }
 
 td:hover {
@@ -45,7 +45,7 @@ td:nth-child(3n+0) {
     border-right: black solid 2px;
 }
 
-button {
+#form .btn-small {
     margin-bottom: 3%;
     margin-left: 3%;
     margin-right: 3%;
@@ -74,6 +74,33 @@ td input:hover {
     box-shadow: 0 1px 0 0 #f5f5f5 !important;
 }
 
+footer {
+    position: absolute;
+    bottom: 5px;
+    right:10px;
+    color: black;
+}
+
+footer a:link {
+    color: black;
+}
+
+footer a:visited {
+    color: black;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+#submit-button {
+    float: right;
+}
+
+#reset-button {
+    float: left;
+}
+
 /* gets rid of up/down arrows in input fields */
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -87,11 +114,4 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-#submit-button {
-    float: right;
-}
-
-#reset-button {
-    float: left;
-}
 

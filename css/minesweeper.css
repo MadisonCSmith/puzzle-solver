@@ -157,9 +157,28 @@ td input:hover {
     background-color: #ff8784 !important;
 }
 
-/*  Media Queries */
+footer {
+    position: absolute;
+    bottom: 5px;
+    right:10px;
+    color: black;
+}
 
-/*@media screen and (max-width: 21000px) {
+footer a:link {
+    color: black;
+}
+
+footer a:visited {
+    color: black;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+ /* Media Queries */ 
+
+@media screen and (max-width: 21000px) {
     
     table {
         width: 50vw; 
@@ -178,6 +197,6 @@ td input:hover {
     table {
         width: 100vw;
     }
-}*/
+}
 
 
