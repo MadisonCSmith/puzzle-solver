@@ -13,11 +13,13 @@
 }
 
 table {
-    margin-bottom: 3%;
     border: black solid 2px;
     font-size: 28px;
     font-family: "Courier New";
     float: center;
+    width: 50vw;
+    height: 50vw;
+    margin: 3% auto;
 }
 
 input {
@@ -26,11 +28,10 @@ input {
 }
 
 td {
-    border: darkgray solid 1px;
+    border-right: darkgray solid 1px; 
+    border-bottom: darkgray solid 2px; 
     text-align: center;
     padding: 0px; 
-    /* border-bottom: darkgray solid 1px; */
-    /* border-top: none; */
 }
 
 td:hover {
@@ -38,18 +39,33 @@ td:hover {
 }
 
 tr:nth-child(3n+0) {
-    border-bottom: black solid 2px;
+    border-bottom: black solid 3px;
 }
 
 td:nth-child(3n+0) {
     border-right: black solid 2px;
 }
 
-#form .btn-small {
-    margin-bottom: 3%;
-    margin-left: 3%;
-    margin-right: 3%;
+.btn-small {
+    margin: 2%;
 }
+
+#reset-button {
+    position: absolute;
+    left: 20%;
+}
+
+i .black-text {
+    position: absolute ;
+    right: 30%;
+}
+
+.test {
+    position: absolute ;
+    right: 30%;
+    width: 50px;
+}
+
 
 .given-value {
     /*color: black;*/
@@ -66,7 +82,7 @@ td:nth-child(3n+0) {
 }
 
 td input {
-    border: #FFFFFF !important;
+    border: #ffffff00 !important;
     box-shadow: 0 1px 0 0 #ffffff !important;
 }
 
@@ -91,14 +107,6 @@ footer a:visited {
 
 footer a:hover {
     text-decoration: underline;
-}
-
-#submit-button {
-    float: right;
-}
-
-#reset-button {
-    float: left;
 }
 
 /* gets rid of up/down arrows in input fields */

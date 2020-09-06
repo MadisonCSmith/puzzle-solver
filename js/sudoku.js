@@ -92,10 +92,10 @@ function solvePuzzle() {
 
     reducePossibilities();
 
-    while (unsolvedCellIndexes.size > 0 && numGuessesLeft > 0) {
+    while (unsolvedCellIndexes.size > 0 /*&& numGuessesLeft > 0*/) {
         makeGuess();
         reducePossibilities();
-        numGuessesLeft--;
+        //numGuessesLeft--;
     }
 
     if (!ifSolvable()) {

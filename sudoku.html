@@ -46,8 +46,8 @@
         For a more detailed explanation, <a href="https://en.wikipedia.org/wiki/Sudoku"> read here</a>.<br><br>
         To use the app, fill in the given values into the grid below and click solve. If it is possible and there is enough information to solve the puzzle, the solved values will appear in the grid below. 
     </div>
-    <div class="row container">
-        <div class="center col s12 m6 l6">
+    <div>
+        <div>
             <form id="puzzle">
                 <table> 
                     <tbody>
@@ -152,8 +152,10 @@
                         </tr>
                     </tbody>
                 </table>
-                <button id="reset-button" class="grey lighten-1 waves-effect waves-light btn-small" type="button" onclick="resetPuzzle()">Reset</button>
-                <input id="submit-button" class="grey lighten-1 waves-effect waves-light btn-small" type="submit" value="Submit">
+                <div id="buttons">
+                    <button id="reset-button" class="black-text grey lighten-1 waves-effect waves-light btn-small" type="button" onclick="resetPuzzle()">Reset</button>
+                    <input id="submit-button" class="black-text grey lighten-1 waves-effect waves-light btn-small " type="submit" value="Submit"></input>
+                </div>
             </form>
         </div>
         <footer>

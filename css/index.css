@@ -18,11 +18,11 @@
  }
 
 #title-background {
-    background-color: #2f2832; /*#221d24; /*#201f27;/* #2c2a35; */
+    background-color: /*#2f2832;*/ #221d24; /*#201f27;/* #2c2a35; */
     z-index: 2;  
     opacity: 1.0;
     border-radius: 3px;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 1.0), 0 1px 4px rgba(0, 0, 0, 1.0);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.24), 2px 2px 4px rgba(0, 0, 0, 0.24), -2px -2px 4px rgba(0, 0, 0, 0.24), -2px -2px 4px rgba(0, 0, 0, 0.24);
 }
 
 footer {
