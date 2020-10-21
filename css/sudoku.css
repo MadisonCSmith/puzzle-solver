@@ -50,9 +50,17 @@ td:nth-child(3n+0) {
     margin: 2%;
 }
 
+#buttons {
+    width: 50%;
+    margin: auto;
+}
+
 #reset-button {
-    position: absolute;
-    left: 20%;
+    float: right;
+}
+
+#submit-button {
+    float: left;
 }
 
 i .black-text {
@@ -60,16 +68,10 @@ i .black-text {
     right: 30%;
 }
 
-.test {
-    position: absolute ;
-    right: 30%;
-    width: 50px;
-}
-
 
 .given-value {
     /*color: black;*/
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .solved-value {
