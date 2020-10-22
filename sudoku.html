@@ -38,131 +38,130 @@
     </nav>
 
     <div id="intro-text" class="container">
-        Sudoku is a logic game where the aim is to solve for the values that belong in every cell in the puzzle. The rules are that<br>
+        Sudoku is a logic game where the aim is to solve for the values that belong in every cell in the puzzle. The rules are that<br><br>
             <p>
                 1. The value in each cell must be between 1 and 9, inclusive. <br>
-                2. The value in each cell must be unique in that cell’s row, column, and box (no repeats of numbers in a row, column, or box). <br>
+                2. The value in each cell must be unique in that cell’s row, column, and box (no repeats of numbers in a row, column, or box). <br><br>
             </p>
         For a more detailed explanation, <a href="https://en.wikipedia.org/wiki/Sudoku"> read here</a>.<br><br>
-        To use the app, fill in the given values into the grid below and click solve. If it is possible to solve the puzzle, the solved values will appear in the grid below. 
+        To use the sudoku, fill in the given values into the grid below and click solve. If it is possible to solve the puzzle, the solved values will appear in the grid below. 
     </div>
-    <div>
-        <div>
-            <form id="puzzle">
-                <table> 
-                    <tbody>
-                        <tr>
-                            <td><input type="number" onClick="this.select();" id="0" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="1" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="2" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="3" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="4" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="5" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="6" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="7" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="8" maxlength="1"></td>
-                        </tr>
-                        <tr>
-                            <td><input type="number" onClick="this.select();" id="9" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="10" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="11" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="12" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="13" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="14" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="15" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="16" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="17" maxlength="1"></td>
-                        </tr>
-                        <tr>
-                            <td><input type="number" onClick="this.select();" id="18" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="19" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="20" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="21" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="22" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="23" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="24" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="25" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="26" maxlength="1"></td>
-                        </tr>
-                        <tr>
-                            <td><input type="number" onClick="this.select();" id="27" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="28" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="29" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="30" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="31" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="32" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="33" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="34" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="35" maxlength="1"></td>
-                        </tr>
-                        <tr>
-                            <td><input type="number" onClick="this.select();" id="36" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="37" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="38" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="39" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="40" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="41" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="42" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="43" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="44" maxlength="1"></td>
-                        </tr>
-                        <tr>
-                            <td><input type="number" onClick="this.select();" id="45" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="46" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="47" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="48" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="49" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="50" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="51" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="52" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="53" maxlength="1"></td>
-                        </tr>
-                        <tr>
-                            <td><input type="number" onClick="this.select();" id="54" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="55" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="56" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="57" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="58" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="59" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="60" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="61" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="62" maxlength="1"></td>
-                        </tr>
-                        <tr>
-                            <td><input type="number" onClick="this.select();" id="63" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="64" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="65" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="66" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="67" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="68" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="69" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="70" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="71" maxlength="1"></td>
-                        </tr>
-                        <tr>
-                            <td><input type="number" onClick="this.select();" id="72" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="73" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="74" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="75" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="76" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="77" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="78" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="79" maxlength="1"></td>
-                            <td><input type="number" onClick="this.select();" id="80" maxlength="1"></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div id="buttons">
-                    <button id="reset-button" class="black-text grey lighten-1 waves-effect waves-light btn-small" type="button" onclick="resetPuzzle()">Reset</button>
-                    <input id="submit-button" class="black-text grey lighten-1 waves-effect waves-light btn-small " type="submit" value="Submit"></input>
-                </div>
-            </form>
-        </div>
-        <footer>
-            <div>
-                Favicon made by <a href="https://www.flaticon.com/authors/becris" title="Becris">Becris</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+    <div class="wrapper">
+        <form id="puzzle">
+            <table> 
+                <tbody>
+                    <tr>
+                        <td><input type="number" onClick="this.select();" id="0" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="1" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="2" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="3" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="4" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="5" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="6" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="7" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="8" maxlength="1"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="number" onClick="this.select();" id="9" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="10" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="11" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="12" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="13" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="14" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="15" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="16" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="17" maxlength="1"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="number" onClick="this.select();" id="18" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="19" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="20" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="21" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="22" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="23" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="24" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="25" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="26" maxlength="1"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="number" onClick="this.select();" id="27" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="28" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="29" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="30" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="31" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="32" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="33" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="34" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="35" maxlength="1"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="number" onClick="this.select();" id="36" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="37" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="38" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="39" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="40" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="41" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="42" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="43" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="44" maxlength="1"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="number" onClick="this.select();" id="45" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="46" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="47" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="48" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="49" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="50" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="51" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="52" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="53" maxlength="1"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="number" onClick="this.select();" id="54" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="55" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="56" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="57" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="58" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="59" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="60" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="61" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="62" maxlength="1"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="number" onClick="this.select();" id="63" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="64" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="65" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="66" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="67" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="68" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="69" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="70" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="71" maxlength="1"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="number" onClick="this.select();" id="72" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="73" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="74" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="75" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="76" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="77" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="78" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="79" maxlength="1"></td>
+                        <td><input type="number" onClick="this.select();" id="80" maxlength="1"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div id="buttons">
+                <button id="reset-button" class="black-text grey lighten-1 waves-effect waves-light btn-small" type="button" onclick="resetPuzzle()">Reset</button>
+                <button id="submit-button" class="black-text green lighten-1 waves-effect waves-light btn-small" input type="submit">Submit</button>
+                <!-- <input id="submit-button" class="black-text grey lighten-1 waves-effect waves-light btn-small " type="submit" value="Submit"></input> -->
             </div>
-        </footer>
+        </form>
+        <div class="space"></div>
+        <div class="push"></div>
+    </div>
+    <div class="footer">
+        Favicon made by <a href="https://www.flaticon.com/authors/becris" title="Becris">Becris</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
     </div>
 
 

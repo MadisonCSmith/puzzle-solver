@@ -1,3 +1,10 @@
+* {
+    margin: 0;
+}
+html, body {
+    height: 100%;
+}
+
 .nav-wrapper {
     padding-left: 2%;
 }
@@ -46,28 +53,20 @@ td:nth-child(3n+0) {
     border-right: black solid 2px;
 }
 
-.btn-small {
-    margin: 2%;
-}
-
 #buttons {
     width: 50%;
-    margin: auto;
+    margin: 0 auto 25px auto;
+    display: block;
 }
 
 #reset-button {
-    float: right;
-}
-
-#submit-button {
     float: left;
 }
 
-i .black-text {
-    position: absolute ;
-    right: 30%;
+#submit-button {
+    float: right;
+    margin: auto;
 }
-
 
 .given-value {
     /*color: black;*/
@@ -75,12 +74,8 @@ i .black-text {
 }
 
 .solved-value {
-    /*color: darkgray;*/
+    color: darkgray;
     font-weight: 200;
-}
-
-.unsolved-set { /*delete............. */ 
-    color: lightcoral;
 }
 
 td input {
@@ -92,22 +87,22 @@ td input:hover {
     box-shadow: 0 1px 0 0 #f5f5f5 !important;
 }
 
-footer {
-    position: absolute;
-    bottom: 5px;
-    right:10px;
+.footer {
+    /* display: block; */
+    margin: auto 20px 10px auto;
+    height: 25px;
+    float: right;
+}
+
+.footer a:link {
     color: black;
 }
 
-footer a:link {
+.footer a:visited {
     color: black;
 }
 
-footer a:visited {
-    color: black;
-}
-
-footer a:hover {
+.footer a:hover {
     text-decoration: underline;
 }
 
@@ -122,6 +117,21 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+/* pushes footer to the bottom of page */
+.wrapper {
+    min-height: 80%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -20px; 
+}
+.footer, .push {
+    height: 20px; 
+}
+
+.space {
+    height: 80px;
 }
 
 

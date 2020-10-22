@@ -2,23 +2,18 @@
 // to do //
 ///////////
 
-// add reset button
 // throw error if not enough info to solve puzzle (if stop making progress)/or results unsolveable puzzle
 // reducePossibilities misspelling
 // can edit puzzle after pressing solve and click solve again? or will that mess it up?
-// organize css file
 // easier way to input numbers- pain in the ass to keep entering and entering and entering numbers  ----- ml project?? ------
 
 
 /// UI ///
 // go through all error messages and highlight in red where the error occurs in puzzle, don't just say there's an error
-// stop things from being changed after submitted-- will mess everything up
 // add some animations and stuff to make it look better- fade appearing
-// go through all materialize css/fancy stuff and make it look pretty
 // get rid of console logs
 // fix the jumping around on input focus when new cells cleared/flagged
 // delete random comments/commented out code
-// edit text
 
 
 
@@ -92,33 +87,31 @@ function solvePuzzle() {
 
     reducePossibilities();
 
-    while (unsolvedCellIndexes.size > 0 /*&& numGuessesLeft > 0*/) {
-        makeGuess();
+    count = 81;
+    while (unsolvedCellIndexes.size > 0 && count > 0/*&& numGuessesLeft > 0*/) {
+        // makeGuess();
         reducePossibilities();
-        //numGuessesLeft--;
+        count--;
+        // numGuessesLeft--;
     }
 
     if (!ifSolvable()) {
-        alert ("The puzzle is impossible to solve.") ///////////////////////// make it so it doesn't finish solving puzzle
+        alert ("The puzzle is not possible to solve.") ///////////////////////// make it so it doesn't finish solving puzzle
     }
 
     // print things in console after finished
     console.log("finished puzzle: " + puzzle); //////////////////////// delete later
-    for (var j = 0; j < 81; j++) {
+    console.log(unsolvedCellIndexes);//////////////////////// delete later
+    // for (var j = 0; j < 81; j++) {
 
-        // adds unsolved sets to DOM
-        if (!Number.isInteger(puzzle[j])) { //////////// delete later
-            deleteLr = 0;
-            puzzle[j].forEach(deleteLater);
-            document.getElementById(j.toString()).value = deleteLr;
-            document.getElementById(j.toString()).classList.add("unsolved-set"); 
-        }
-    }
-}
-
-var deleteLr = 0; ////////////////////// delete
-function deleteLater(values) {
-    deleteLr = (deleteLr * 10) + values;
+    //     // adds unsolved sets to DOM
+    //     if (!Number.isInteger(puzzle[j])) { //////////// delete later
+    //         deleteLr = 0;
+    //         puzzle[j].forEach(deleteLater);
+    //         document.getElementById(j.toString()).value = deleteLr;
+    //         document.getElementById(j.toString()).classList.add("unsolved-set"); 
+    //     }
+    // }
 }
 
 // checks if puzzle solveable - no repeats in columns, rows, squares
@@ -131,6 +124,7 @@ function ifSolvable() {
     return true;
 }
 
+// while puzzles unsolved and progress continues to be made, delete possiblities and convert cells from unsolved sets to solved ints 
 function reducePossibilities() {
     count = 500; // delete later and replace with "progressMade"
 
@@ -378,7 +372,9 @@ function resetPuzzle() { /////////////////////////// double check that include a
                             80]); // while greater than 0, puzzle is unsolved
 
     for (var i = 0; i < 81; i++) {
-        document.getElementById(i.toString()).value = null;
+        cell = document.getElementById(i.toString())
+        cell.value = null;
+        cell.classList.remove("given-value", "solved-value");
     }
 
 }
