@@ -1,3 +1,10 @@
+* {
+    margin: 0;
+}
+html, body {
+    height: 100%;
+}
+
 .nav-wrapper {
     padding-left: 2%;
 }
@@ -157,11 +164,9 @@ td input:hover {
     background-color: #ff8784 !important;
 }
 
-footer {
-    position: absolute;
-    bottom: 5px;
-    right:10px;
-    color: black;
+.footer {
+    margin: auto 20px 10px auto;
+    float: right;
 }
 
 footer a:link {
@@ -174,6 +179,27 @@ footer a:visited {
 
 footer a:hover {
     text-decoration: underline;
+}
+
+/* pushes footer to the bottom of page */
+.wrapper {
+    min-height: 80%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -20px; 
+}
+.footer, .push {
+    height: 20px; 
+}
+
+.space {
+    height: 80px;
+}
+
+#buttons {
+    width: 50%;
+    margin: 20px auto 25px auto;
+    display: block;
 }
 
  /* Media Queries */ 

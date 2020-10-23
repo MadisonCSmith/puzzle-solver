@@ -88,9 +88,7 @@ td input:hover {
 }
 
 .footer {
-    /* display: block; */
     margin: auto 20px 10px auto;
-    height: 25px;
     float: right;
 }
 

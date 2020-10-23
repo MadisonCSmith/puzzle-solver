@@ -4,24 +4,12 @@
 
 // throw error if not enough info to solve puzzle (if stop making progress)/or results unsolveable puzzle
 // reducePossibilities misspelling
-// can edit puzzle after pressing solve and click solve again? or will that mess it up?
 // easier way to input numbers- pain in the ass to keep entering and entering and entering numbers  ----- ml project?? ------
-
-
-/// UI ///
 // go through all error messages and highlight in red where the error occurs in puzzle, don't just say there's an error
 // add some animations and stuff to make it look better- fade appearing
-// get rid of console logs
-// fix the jumping around on input focus when new cells cleared/flagged
-// delete random comments/commented out code
-
-
 
 ///////////
 ///////////
-
-
-/// stack of puzzles for guessing decisions (status of puzzle before last decision)
 
 var puzzle = new Array(81);
 var unsolvedCellIndexes = new Set([0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
@@ -32,9 +20,7 @@ var unsolvedCellIndexes = new Set([0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
                                 50, 51, 52, 53, 54, 55, 56, 57, 58, 59,
                                 60, 61, 62, 63, 64, 65, 66, 67, 68, 69,
                                 70, 71, 72, 73, 74, 75, 76, 77, 78, 79,
-                                80]); // while greater than 0, puzzle is unsolved
-
-
+                                80]); 
 
 ///////////////////////////
 /// gets data from form ///
@@ -63,7 +49,7 @@ form.addEventListener('submit', function(event) {
             puzzle[i] = new Set([1, 2, 3, 4, 5, 6, 7, 8, 9]); // if no value, adds set into array
         }
     }
-    console.log("initial puzzle: " + puzzle);
+    // console.log("initial puzzle: " + puzzle);
     event.preventDefault(); // keeps page from refreshing and erasing data when form is submitted
     solvePuzzle();
 });
@@ -100,18 +86,8 @@ function solvePuzzle() {
     }
 
     // print things in console after finished
-    console.log("finished puzzle: " + puzzle); //////////////////////// delete later
-    console.log(unsolvedCellIndexes);//////////////////////// delete later
-    // for (var j = 0; j < 81; j++) {
-
-    //     // adds unsolved sets to DOM
-    //     if (!Number.isInteger(puzzle[j])) { //////////// delete later
-    //         deleteLr = 0;
-    //         puzzle[j].forEach(deleteLater);
-    //         document.getElementById(j.toString()).value = deleteLr;
-    //         document.getElementById(j.toString()).classList.add("unsolved-set"); 
-    //     }
-    // }
+    // console.log("finished puzzle: " + puzzle); 
+    // console.log(unsolvedCellIndexes);
 }
 
 // checks if puzzle solveable - no repeats in columns, rows, squares
@@ -126,7 +102,7 @@ function ifSolvable() {
 
 // while puzzles unsolved and progress continues to be made, delete possiblities and convert cells from unsolved sets to solved ints 
 function reducePossibilities() {
-    count = 500; // delete later and replace with "progressMade"
+    count = 500; 
 
     // while puzzles unsolved and progress continues to be made, delete possiblities and convert cells from unsolved sets to solved ints
     while (unsolvedCellIndexes.size > 0 && count > 0) {
@@ -141,7 +117,7 @@ function reducePossibilities() {
             findUniquePossiblities(getRowUnsolved(i));
             findUniquePossiblities(getSquareUnsolved(i));
         }
-        count--; // delete later and replace with boolean "progressMade"
+        count--; 
     }
 }
 
@@ -336,15 +312,6 @@ function changeToSolved(cellIndex, value) {
     }
 }
 
-// when can't make any more progress, makes a guess
-function makeGuess() {
-    // if (numGuessLeft > 0) {
-    //     var index = unsolvedCellIndexes[0];
-    //     while (puzzle[unsolvedCellIndexes[index]] > 2) {
-
-    //     }
-    // }
-}
 
 // returns true if array with solved value has duplicates, false if all unique values
 function hasDuplicates(solvedValues) {
@@ -359,7 +326,7 @@ function hasDuplicates(solvedValues) {
     return false;
 }
 
-function resetPuzzle() { /////////////////////////// double check that include all new variables in reset
+function resetPuzzle() {
     puzzle = new Array(81);
     unsolvedCellIndexes = new Set([0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
                             10, 11, 12, 13, 14, 15, 16, 17, 18, 19,

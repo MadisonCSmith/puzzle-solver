@@ -42,54 +42,65 @@
     <!-- text above form -->
     <div class="container">
         <div id="blackjack-text" class="row"> 
-            <p>
-                Minesweeper is a logic puzzle where the aim is to clear all the cells that do not contain a "mine". 
+            <p><br>
+                Minesweeper is a logic puzzle where the aim is to clear all of the cells that do not contain a "mine". 
                 Avoiding mines requires some luck, but also a fair bit of logic. This app does the logic part for 
-                the user. There are three types of cells. There flagged cells that are known to contain a mine, 
-                cleared cells that are known not to contain a mine, and unknown cells that may or may not contain 
-                a mine. Some of the cleared cells have numbers have indicate the number of surrounding cells that 
-                contain mines. For a more detailed explanation, <a href="https://en.wikipedia.org/wiki/Microsoft_Minesweeper#Gameplay">read here</a>.
-                <br><br>
-                To use the app, click on a cell to clear it. If the cell contains a number, type in the number in the cell. 
+                the user. <br><br>
+                
+                There are three types of cells in Minesweeper. <br><br>
+
+                <ol>
+                    <li><b>Flagged cells</b> are known to contain a mine</li>
+                    <li><b>Cleared cells</b> are known to not contain a mine. Some of the cleared cells have numbers have indicate the number of surrounding cells that 
+                        contain mines</li>
+                    <li><b>Unknown cells</b> may or may not contain a mine</li>
+                </ol><br>
+                
+                For a more detailed explanation, <a href="https://en.wikipedia.org/wiki/Microsoft_Minesweeper#Gameplay">read here</a>.<br><br>
+
+                To use the solver, click on a cell to clear it. If the cell contains a number, type in the number in the cell. 
                 If any cells can be cleared or flagged, they will do so automatically.
             </p>
         </div>
     </div>
 
     <!-- determine size of game -->
-    <div class="container">
-        <form>
-            <div class="row">
-                Grid size: 
-                <div class="input-field inline">
-                    <input value="9" id="grid-width" type="text" class="validate" onClick="this.select()">
+    <div class="wrapper">
+        <div class="container">
+            <form>
+                <div class="row">
+                    Grid size: 
+                    <div class="input-field inline">
+                        <input value="9" id="grid-width" type="text" class="validate" onClick="this.select()">
+                    </div>
+                    x 
+                    <div class="input-field inline">
+                        <input value="9" id="grid-height" type="text" class="validate" onClick="this.select()">
+                    </div>
                 </div>
-                x 
-                <div class="input-field inline">
-                    <input value="9" id="grid-height" type="text" class="validate" onClick="this.select()">
-                </div>
-            </div>
-            <p id="width-error"></p>
-            <p id="height-error"></p>
-            <p id="value-error"></p>
-        </form>
-    </div>
-    <footer>
-        <div>
-            Favicon made by <a href="https://www.flaticon.com/authors/becris" title="Becris">Becris</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+                <p id="width-error"></p>
+                <p id="height-error"></p>
+                <p id="value-error"></p>
+            </form>
         </div>
-    </footer>
 
 
-    <!-- <div class="row container"> --> 
         <form id="puzzle">
             <table id="grid"> 
                 <tbody>
                 </tbody>
             </table>
-            <input id="reset-button" class="grey lighten-1 waves-effect waves-light btn-small" type="submit" value="Reset Game">
+            <div id="buttons">
+                <!-- <input id="reset-button" class="grey lighten-1 waves-effect waves-light btn-small" type="submit" value="Reset Game"> -->
+                <button id="reset-button" class="black-text grey lighten-1 waves-effect waves-light btn-small" input type="submit">Reset</button>
+            </div>
         </form>
-    <!-- </div> --> 
+        <div class="space"></div>
+        <div class="push"></div>
+    </div>
+    <div class="footer">
+        Favicon made by <a href="https://www.flaticon.com/authors/becris" title="Becris">Becris</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+    </div>
     
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
