@@ -50,11 +50,11 @@ td.unknown:after { /* makes unknown cells square somehow */
 }
 
 .unknown.light {
-  background-color: #C8C8C8; 
+  background-color: #4db6ac; /*#C8C8C8;*/ 
 }
 
 .unknown.dark {
-    background-color: #BEBEBE;
+    background-color: #26a69a; /*#BEBEBE;*/
 }
 
 .unknown:hover {
@@ -169,16 +169,8 @@ td input:hover {
     float: right;
 }
 
-footer a:link {
-    color: black;
-}
-
-footer a:visited {
-    color: black;
-}
-
-footer a:hover {
-    text-decoration: underline;
+a {
+    color: #4db6ac;
 }
 
 /* pushes footer to the bottom of page */

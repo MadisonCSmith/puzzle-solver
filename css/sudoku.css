@@ -74,7 +74,7 @@ td:nth-child(3n+0) {
 }
 
 .solved-value {
-    color: darkgray;
+    color: #4db6ac; /*darkgray;*/
     font-weight: 200;
 }
 
@@ -92,16 +92,8 @@ td input:hover {
     float: right;
 }
 
-.footer a:link {
-    color: black;
-}
-
-.footer a:visited {
-    color: black;
-}
-
-.footer a:hover {
-    text-decoration: underline;
+a {
+    color: #4db6ac;
 }
 
 /* gets rid of up/down arrows in input fields */
